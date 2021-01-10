@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 11 Data Case Study 2 | ESOC 2014 Introduction to Data Science</title>
+  <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 11 Data Case Study 2 | ESOC 2014 Introduction to Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 11 Data Case Study 2 | ESOC 2014 Introduction to Data Science" />
+  
+  <meta name="twitter:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+<meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
+
+
+<meta name="date" content="2021-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-case-study-1.html"/>
+<link rel="next" href="getting-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ESOC 214 Introduction to Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.2</b> Course Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#learning-outcomes"><i class="fa fa-check"></i><b>1.3</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-few-words-on-r-and-coding"><i class="fa fa-check"></i><b>1.4</b> A Few Words on R and Coding</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#a-few-words-on-technology"><i class="fa fa-check"></i><b>1.5</b> A Few Words on Technology</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.6</b> Readings</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assignments-with-grade-breakdown"><i class="fa fa-check"></i><b>1.7</b> Assignments with Grade Breakdown</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#requirements-for-the-course"><i class="fa fa-check"></i><b>1.8</b> Requirements for the Course</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#course-schedule"><i class="fa fa-check"></i><b>1.9</b> Course Schedule</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.10</b> Final Project</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#honors-students-requirements"><i class="fa fa-check"></i><b>1.11</b> Honors Students’ Requirements</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#student-accommodations"><i class="fa fa-check"></i><b>1.12</b> Student Accommodations</a></li>
+<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#attendance-due-dates-and-missing-work"><i class="fa fa-check"></i><b>1.13</b> Attendance, Due Dates, and Missing Work</a></li>
+<li class="chapter" data-level="1.14" data-path="index.html"><a href="index.html#course-conduct-and-campus-policies"><i class="fa fa-check"></i><b>1.14</b> Course Conduct and Campus Policies</a></li>
+<li class="chapter" data-level="1.15" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.15</b> Code of Conduct</a><ul>
+<li class="chapter" data-level="1.15.1" data-path="index.html"><a href="index.html#our-pledge"><i class="fa fa-check"></i><b>1.15.1</b> Our Pledge</a></li>
+<li class="chapter" data-level="1.15.2" data-path="index.html"><a href="index.html#our-standards"><i class="fa fa-check"></i><b>1.15.2</b> Our Standards</a></li>
+<li class="chapter" data-level="1.15.3" data-path="index.html"><a href="index.html#enforcement"><i class="fa fa-check"></i><b>1.15.3</b> Enforcement</a></li>
+<li class="chapter" data-level="1.15.4" data-path="index.html"><a href="index.html#attribution"><i class="fa fa-check"></i><b>1.15.4</b> Attribution</a></li>
+</ul></li>
+<li class="chapter" data-level="1.16" data-path="index.html"><a href="index.html#how-to-ask-for-help"><i class="fa fa-check"></i><b>1.16</b> How to Ask For Help</a><ul>
+<li class="chapter" data-level="1.16.1" data-path="index.html"><a href="index.html#before-you-ask-for-help"><i class="fa fa-check"></i><b>1.16.1</b> Before You ask for help</a></li>
+<li class="chapter" data-level="1.16.2" data-path="index.html"><a href="index.html#ask-other-people-for-help"><i class="fa fa-check"></i><b>1.16.2</b> Ask other people for help</a></li>
+<li class="chapter" data-level="1.16.3" data-path="index.html"><a href="index.html#list-of-resources"><i class="fa fa-check"></i><b>1.16.3</b> List of Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="whats-ds.html"><a href="whats-ds.html"><i class="fa fa-check"></i><b>2</b> What’s data science?</a><ul>
+<li class="chapter" data-level="2.1" data-path="whats-ds.html"><a href="whats-ds.html#before-class-1"><i class="fa fa-check"></i><b>2.1</b> Before class #1</a></li>
+<li class="chapter" data-level="2.2" data-path="whats-ds.html"><a href="whats-ds.html#whats-data-science"><i class="fa fa-check"></i><b>2.2</b> What’s data science?</a></li>
+<li class="chapter" data-level="2.3" data-path="whats-ds.html"><a href="whats-ds.html#what-does-a-data-scientist-do"><i class="fa fa-check"></i><b>2.3</b> What does a data scientist do?</a></li>
+<li class="chapter" data-level="2.4" data-path="whats-ds.html"><a href="whats-ds.html#data-science-workflow"><i class="fa fa-check"></i><b>2.4</b> Data Science Workflow</a></li>
+<li class="chapter" data-level="2.5" data-path="whats-ds.html"><a href="whats-ds.html#before-class-2"><i class="fa fa-check"></i><b>2.5</b> Before class #2</a></li>
+<li class="chapter" data-level="2.6" data-path="whats-ds.html"><a href="whats-ds.html#whats-data"><i class="fa fa-check"></i><b>2.6</b> What’s data?</a></li>
+<li class="chapter" data-level="2.7" data-path="whats-ds.html"><a href="whats-ds.html#what-does-data-analysis-look-like"><i class="fa fa-check"></i><b>2.7</b> What does data analysis look like?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>3</b> Exploring our IDE (Rstudio)</a><ul>
+<li class="chapter" data-level="3.1" data-path="install-r.html"><a href="install-r.html#before-class-3"><i class="fa fa-check"></i><b>3.1</b> Before class #3</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="install-r.html"><a href="install-r.html#ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer"><i class="fa fa-check"></i><b>3.1.1</b> I’ve never installed R and RStudio in my computer OR I’m not sure I have R and RStudio installed in my computer</a></li>
+<li class="chapter" data-level="3.1.2" data-path="install-r.html"><a href="install-r.html#i-already-have-r-and-rstudio-installed"><i class="fa fa-check"></i><b>3.1.2</b> I already have R and RStudio installed</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#why-learn-r"><i class="fa fa-check"></i><b>3.2</b> Why learn R?</a></li>
+<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#why-use-rstudio"><i class="fa fa-check"></i><b>3.3</b> Why use RStudio?</a></li>
+<li class="chapter" data-level="3.4" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.4</b> Create an R Project</a></li>
+<li class="chapter" data-level="3.5" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.5</b> Operations and Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#before-class-4"><i class="fa fa-check"></i><b>4.1</b> Before Class #4</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#dataframes"><i class="fa fa-check"></i><b>4.2</b> Dataframes</a></li>
+<li class="chapter" data-level="4.3" data-path="r-basics.html"><a href="r-basics.html#slicing-your-dataframe"><i class="fa fa-check"></i><b>4.3</b> Slicing your dataframe</a></li>
+<li class="chapter" data-level="4.4" data-path="r-basics.html"><a href="r-basics.html#adding-new-variables-i.e.-columns-to-your-dataframe"><i class="fa fa-check"></i><b>4.4</b> Adding new variables (i.e., columns) to your dataframe</a></li>
+<li class="chapter" data-level="4.5" data-path="r-basics.html"><a href="r-basics.html#descriptive-stats-on-dataframes"><i class="fa fa-check"></i><b>4.5</b> Descriptive stats on dataframes</a></li>
+<li class="chapter" data-level="4.6" data-path="r-basics.html"><a href="r-basics.html#note-on-coding-style"><i class="fa fa-check"></i><b>4.6</b> Note on coding style</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>5</b> Version Control</a><ul>
+<li class="chapter" data-level="5.1" data-path="version-control.html"><a href="version-control.html#before-class-5"><i class="fa fa-check"></i><b>5.1</b> Before Class #5</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="version-control.html"><a href="version-control.html#install-git-on-your-computer"><i class="fa fa-check"></i><b>5.1.1</b> Install git on your computer</a></li>
+<li class="chapter" data-level="5.1.2" data-path="version-control.html"><a href="version-control.html#create-a-github-account"><i class="fa fa-check"></i><b>5.1.2</b> Create a GitHub account</a></li>
+<li class="chapter" data-level="5.1.3" data-path="version-control.html"><a href="version-control.html#join-our-github-classroom"><i class="fa fa-check"></i><b>5.1.3</b> Join our GitHub classroom</a></li>
+<li class="chapter" data-level="5.1.4" data-path="version-control.html"><a href="version-control.html#link-rstudio-to-github"><i class="fa fa-check"></i><b>5.1.4</b> Link RStudio to GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="version-control.html"><a href="version-control.html#what-is-version-control"><i class="fa fa-check"></i><b>5.2</b> What is version control?</a></li>
+<li class="chapter" data-level="5.3" data-path="version-control.html"><a href="version-control.html#submitting-assignments"><i class="fa fa-check"></i><b>5.3</b> Submitting assignments</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="version-control.html"><a href="version-control.html#clone-assignment-repository"><i class="fa fa-check"></i><b>5.3.1</b> Clone assignment repository</a></li>
+<li class="chapter" data-level="5.3.2" data-path="version-control.html"><a href="version-control.html#modify-files"><i class="fa fa-check"></i><b>5.3.2</b> Modify files</a></li>
+<li class="chapter" data-level="5.3.3" data-path="version-control.html"><a href="version-control.html#commit-changes"><i class="fa fa-check"></i><b>5.3.3</b> Commit changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html"><i class="fa fa-check"></i><b>6</b> Intro to Tidyverse</a><ul>
+<li class="chapter" data-level="6.1" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-class-6"><i class="fa fa-check"></i><b>6.1</b> Before Class #6</a></li>
+<li class="chapter" data-level="6.2" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#what-are-r-packages"><i class="fa fa-check"></i><b>6.2</b> What are R Packages?</a></li>
+<li class="chapter" data-level="6.3" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>6.3</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.4" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-you-load-your-data"><i class="fa fa-check"></i><b>6.4</b> Before You Load your Data</a></li>
+<li class="chapter" data-level="6.5" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#whats-our-question-again"><i class="fa fa-check"></i><b>6.5</b> What’s our question again?</a></li>
+<li class="chapter" data-level="6.6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>6.6</b> Load Data with Tidyverse</a></li>
+<li class="chapter" data-level="6.7" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#inspect-your-data"><i class="fa fa-check"></i><b>6.7</b> Inspect Your Data</a></li>
+<li class="chapter" data-level="6.8" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#the-pipe"><i class="fa fa-check"></i><b>6.8</b> The Pipe</a></li>
+<li class="chapter" data-level="6.9" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#counting-categorical-variables"><i class="fa fa-check"></i><b>6.9</b> Counting Categorical Variables</a></li>
+<li class="chapter" data-level="6.10" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-summarise"><i class="fa fa-check"></i><b>6.10</b> group_by + summarise</a></li>
+<li class="chapter" data-level="6.11" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-filter"><i class="fa fa-check"></i><b>6.11</b> group_by + filter</a></li>
+<li class="chapter" data-level="6.12" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#pivot-dataframe"><i class="fa fa-check"></i><b>6.12</b> Pivot Dataframe</a></li>
+<li class="chapter" data-level="6.13" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#separating-one-categorical-column-into-two"><i class="fa fa-check"></i><b>6.13</b> Separating one categorical column into two</a></li>
+<li class="chapter" data-level="6.14" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#example-of-plotting"><i class="fa fa-check"></i><b>6.14</b> Example of Plotting</a></li>
+<li class="chapter" data-level="6.15" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-01"><i class="fa fa-check"></i><b>6.15</b> DATA CHALLENGE 01</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>7</b> Data Wrangling</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-wrangling.html"><a href="data-wrangling.html#load-libraries"><i class="fa fa-check"></i><b>7.1</b> Load libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="data-wrangling.html"><a href="data-wrangling.html#read-your-data-in"><i class="fa fa-check"></i><b>7.2</b> Read your data in</a></li>
+<li class="chapter" data-level="7.3" data-path="data-wrangling.html"><a href="data-wrangling.html#summarise-data"><i class="fa fa-check"></i><b>7.3</b> Summarise data</a></li>
+<li class="chapter" data-level="7.4" data-path="data-wrangling.html"><a href="data-wrangling.html#tidy-data"><i class="fa fa-check"></i><b>7.4</b> Tidy data</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="data-wrangling.html"><a href="data-wrangling.html#viz-demo"><i class="fa fa-check"></i><b>7.4.1</b> Viz Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-wrangling.html"><a href="data-wrangling.html#transform-data"><i class="fa fa-check"></i><b>7.5</b> Transform Data</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="data-wrangling.html"><a href="data-wrangling.html#viz-demo-1"><i class="fa fa-check"></i><b>7.5.1</b> Viz Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-wrangling.html"><a href="data-wrangling.html#data-challenge-02"><i class="fa fa-check"></i><b>7.6</b> DATA CHALLENGE 02</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The layered grammar of graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#load-data"><i class="fa fa-check"></i><b>8.2</b> Load data</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#what-to-plot"><i class="fa fa-check"></i><b>8.3</b> What to plot?</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic Mappings</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="data-visualization.html"><a href="data-visualization.html#one-continuous-variable"><i class="fa fa-check"></i><b>8.4.1</b> One continuous variable</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-visualization.html"><a href="data-visualization.html#two-numeric-variables"><i class="fa fa-check"></i><b>8.4.2</b> Two numeric variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#geom_-i.e.-geometric-objects"><i class="fa fa-check"></i><b>8.5</b> geom_ (i.e., Geometric Objects)</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#more-mappings-with-aes"><i class="fa fa-check"></i><b>8.6</b> More mappings with aes()</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>8.7</b> Facets</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualization.html"><a href="data-visualization.html#more-summarize"><i class="fa fa-check"></i><b>8.8</b> More Summarize</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualization.html"><a href="data-visualization.html#data-challenge-03"><i class="fa fa-check"></i><b>8.9</b> DATA CHALLENGE 03</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html"><i class="fa fa-check"></i><b>9</b> Data Visualization II</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-artist"><i class="fa fa-check"></i><b>9.1</b> Data Viz by Artist</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#explore-artist-info"><i class="fa fa-check"></i><b>9.1.1</b> Explore Artist Info</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame-with-selected-artists"><i class="fa fa-check"></i><b>9.1.2</b> Create new data frame with selected artists</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plotting"><i class="fa fa-check"></i><b>9.1.3</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-album"><i class="fa fa-check"></i><b>9.2</b> Data Viz by Album</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame"><i class="fa fa-check"></i><b>9.2.1</b> Create new data frame</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#summarize-data"><i class="fa fa-check"></i><b>9.2.2</b> Summarize data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plot-summarized-data"><i class="fa fa-check"></i><b>9.2.3</b> Plot summarized data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-challenge-04"><i class="fa fa-check"></i><b>9.3</b> DATA CHALLENGE 04</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 1</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-questions"><i class="fa fa-check"></i><b>10.1</b> Data Questions</a></li>
+<li class="chapter" data-level="10.2" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-exploration"><i class="fa fa-check"></i><b>10.2</b> Data Exploration</a></li>
+<li class="chapter" data-level="10.3" data-path="data-case-study-1.html"><a href="data-case-study-1.html#calculate-height-and-weight-relationship"><i class="fa fa-check"></i><b>10.3</b> Calculate height and weight relationship</a></li>
+<li class="chapter" data-level="10.4" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-kilos-per-centimeter-across-years"><i class="fa fa-check"></i><b>10.4</b> Plot kilos per centimeter across years</a></li>
+<li class="chapter" data-level="10.5" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-weight-over-time"><i class="fa fa-check"></i><b>10.5</b> Plot weight over time</a></li>
+<li class="chapter" data-level="10.6" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-over-time"><i class="fa fa-check"></i><b>10.6</b> Plot height over time</a></li>
+<li class="chapter" data-level="10.7" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-filtering"><i class="fa fa-check"></i><b>10.7</b> Data Filtering</a></li>
+<li class="chapter" data-level="10.8" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-and-weight-across-countries-over-the-years"><i class="fa fa-check"></i><b>10.8</b> Plot height and weight across countries over the years</a></li>
+<li class="chapter" data-level="10.9" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.9</b> Solving the problem of team name changes over time</a></li>
+<li class="chapter" data-level="10.10" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-05"><i class="fa fa-check"></i><b>10.10</b> DATA CHALLENGE 05</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a><ul>
+<li class="chapter" data-level="11.1" data-path="data-case-study-2.html"><a href="data-case-study-2.html#reading-data-from-a-url"><i class="fa fa-check"></i><b>11.1</b> Reading data from a URL</a></li>
+<li class="chapter" data-level="11.2" data-path="data-case-study-2.html"><a href="data-case-study-2.html#cleaning-up-column-names"><i class="fa fa-check"></i><b>11.2</b> Cleaning up column names</a></li>
+<li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
+<li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
+<li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a><ul>
+<li class="chapter" data-level="12.1" data-path="getting-data.html"><a href="getting-data.html#search-for-data-sets"><i class="fa fa-check"></i><b>12.1</b> Search for data sets</a></li>
+<li class="chapter" data-level="12.2" data-path="getting-data.html"><a href="getting-data.html#extracting-data-tables-from-pdf-files"><i class="fa fa-check"></i><b>12.2</b> Extracting data tables from pdf files</a></li>
+<li class="chapter" data-level="12.3" data-path="getting-data.html"><a href="getting-data.html#extracting-data-tables-from-websites"><i class="fa fa-check"></i><b>12.3</b> Extracting data tables from websites</a></li>
+<li class="chapter" data-level="12.4" data-path="getting-data.html"><a href="getting-data.html#project-proposal"><i class="fa fa-check"></i><b>12.4</b> Project Proposal</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>13</b> Data Case Study 3</a><ul>
+<li class="chapter" data-level="13.1" data-path="data-case-study-3.html"><a href="data-case-study-3.html#adding-population-info-to-data-frame"><i class="fa fa-check"></i><b>13.1</b> Adding population info to data frame</a></li>
+<li class="chapter" data-level="13.2" data-path="data-case-study-3.html"><a href="data-case-study-3.html#plotting-a-map"><i class="fa fa-check"></i><b>13.2</b> Plotting a map</a></li>
+<li class="chapter" data-level="13.3" data-path="data-case-study-3.html"><a href="data-case-study-3.html#data-challenge-07"><i class="fa fa-check"></i><b>13.3</b> DATA CHALLENGE 07</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>14</b> R Markdown</a><ul>
+<li class="chapter" data-level="14.1" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-r-markdown-file"><i class="fa fa-check"></i><b>14.1</b> Creating a new R Markdown file</a></li>
+<li class="chapter" data-level="14.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>14.2</b> Chunk Options</a></li>
+<li class="chapter" data-level="14.3" data-path="r-markdown.html"><a href="r-markdown.html#change-yaml-header"><i class="fa fa-check"></i><b>14.3</b> Change YAML header</a></li>
+<li class="chapter" data-level="14.4" data-path="r-markdown.html"><a href="r-markdown.html#text-formatting"><i class="fa fa-check"></i><b>14.4</b> Text Formatting</a></li>
+<li class="chapter" data-level="14.5" data-path="r-markdown.html"><a href="r-markdown.html#reading-data"><i class="fa fa-check"></i><b>14.5</b> Reading Data</a></li>
+<li class="chapter" data-level="14.6" data-path="r-markdown.html"><a href="r-markdown.html#data-tables"><i class="fa fa-check"></i><b>14.6</b> Data Tables</a></li>
+<li class="chapter" data-level="14.7" data-path="r-markdown.html"><a href="r-markdown.html#manual-tables"><i class="fa fa-check"></i><b>14.7</b> Manual Tables</a></li>
+<li class="chapter" data-level="14.8" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>14.8</b> Plots</a></li>
+<li class="chapter" data-level="14.9" data-path="r-markdown.html"><a href="r-markdown.html#knitting-pdfs"><i class="fa fa-check"></i><b>14.9</b> Knitting PDFs</a></li>
+<li class="chapter" data-level="14.10" data-path="r-markdown.html"><a href="r-markdown.html#data-challenge-08"><i class="fa fa-check"></i><b>14.10</b> DATA CHALLENGE 08</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>15</b> Data Case Study 4</a><ul>
+<li class="chapter" data-level="15.1" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data"><i class="fa fa-check"></i><b>15.1</b> Data</a></li>
+<li class="chapter" data-level="15.2" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data-wrangling-1"><i class="fa fa-check"></i><b>15.2</b> Data Wrangling</a></li>
+<li class="chapter" data-level="15.3" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data-challenge-09"><i class="fa fa-check"></i><b>15.3</b> DATA CHALLENGE 09</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>16</b> Analysis Reporting</a><ul>
+<li class="chapter" data-level="16.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#types-of-stories"><i class="fa fa-check"></i><b>16.1</b> Types of stories</a></li>
+<li class="chapter" data-level="16.2" data-path="analysis-reporting.html"><a href="analysis-reporting.html#telling-a-story"><i class="fa fa-check"></i><b>16.2</b> Telling a story</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#how-to-tell-the-story"><i class="fa fa-check"></i><b>16.2.1</b> How to tell the story</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="analysis-reporting.html"><a href="analysis-reporting.html#telling-a-story-well"><i class="fa fa-check"></i><b>16.3</b> Telling a story well</a></li>
+<li class="chapter" data-level="16.4" data-path="analysis-reporting.html"><a href="analysis-reporting.html#interactive-dashboards"><i class="fa fa-check"></i><b>16.4</b> Interactive dashboards</a></li>
+<li class="chapter" data-level="16.5" data-path="analysis-reporting.html"><a href="analysis-reporting.html#final-project-submission"><i class="fa fa-check"></i><b>16.5</b> FINAL PROJECT SUBMISSION</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ESOC 2014 Introduction to Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-case-study-2" class="section level1">
+<h1><span class="header-section-number">Module 11</span> Data Case Study 2</h1>
+<p>We’ve been working mainly with the <code>tidyverse</code> library, but today we will work with a few different libraries. The packages <code>janitor</code> and <code>lubridate</code> are very useful. Maybe sure you have these installed (use <code>install.packages</code>) before you load these libraries.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="data-case-study-2.html#cb237-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-case-study-2.html#cb240-1"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb240-2"><a href="data-case-study-2.html#cb240-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div id="reading-data-from-a-url" class="section level2">
+<h2><span class="header-section-number">11.1</span> Reading data from a URL</h2>
+<p>Today we are working with a large data set on global land temperatures. I added the csv file to github because it’s a very large file. You can use <code>read_csv</code> to read the file directly from github</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="data-case-study-2.html#cb241-1"></a>global_temperatures &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/esoc214/fall2020_002_class_scripts/main/data/GlobalLandTemperaturesByCountry.csv&quot;</span>) </span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   dt = col_date(format = &quot;&quot;),
+##   AverageTemperature = col_double(),
+##   AverageTemperatureUncertainty = col_double(),
+##   Country = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="data-case-study-2.html#cb243-1"></a><span class="co"># inspect data</span></span>
+<span id="cb243-2"><a href="data-case-study-2.html#cb243-2"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<pre><code>## Rows: 577,462
+## Columns: 4
+## $ dt                            &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, 17…
+## $ AverageTemperature            &lt;dbl&gt; 4.384, NA, NA, NA, NA, 1.530, 6.702, 11…
+## $ AverageTemperatureUncertainty &lt;dbl&gt; 2.294, NA, NA, NA, NA, 4.680, 1.789, 1.…
+## $ Country                       &lt;chr&gt; &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;Ål…</code></pre>
+</div>
+<div id="cleaning-up-column-names" class="section level2">
+<h2><span class="header-section-number">11.2</span> Cleaning up column names</h2>
+<p>Column names from different data sets usually have a number of different casings (Camel, Pascal, Snake, Kebab Case, etc.). I like to use <code>clean_names()</code> to standardize column names to <code>snake_case</code>.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="data-case-study-2.html#cb245-1"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb245-2"><a href="data-case-study-2.html#cb245-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span>
+<span id="cb245-3"><a href="data-case-study-2.html#cb245-3"></a></span>
+<span id="cb245-4"><a href="data-case-study-2.html#cb245-4"></a><span class="co"># inspect data</span></span>
+<span id="cb245-5"><a href="data-case-study-2.html#cb245-5"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<pre><code>## Rows: 577,462
+## Columns: 4
+## $ dt                              &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, …
+## $ average_temperature             &lt;dbl&gt; 4.384, NA, NA, NA, NA, 1.530, 6.702, …
+## $ average_temperature_uncertainty &lt;dbl&gt; 2.294, NA, NA, NA, NA, 4.680, 1.789, …
+## $ country                         &lt;chr&gt; &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;…</code></pre>
+</div>
+<div id="manipulating-dates" class="section level2">
+<h2><span class="header-section-number">11.3</span> Manipulating Dates</h2>
+<p>Now, let’s turn our attention to the <code>dt</code> column, which is a date.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="data-case-study-2.html#cb247-1"></a><span class="kw">class</span>(global_temperatures<span class="op">$</span>dt)</span></code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<p>There’s a number of functions we can run on a <code>Date</code> variable.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="data-case-study-2.html#cb249-1"></a><span class="co"># extract year from dt variable in global_temperatures</span></span>
+<span id="cb249-2"><a href="data-case-study-2.html#cb249-2"></a><span class="kw">year</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<pre><code>##  [1] 1743 1743 1744 1744 1744 1744 1744 1744 1744 1744</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="data-case-study-2.html#cb251-1"></a><span class="co"># extract month from dt variable in global_temperatures</span></span>
+<span id="cb251-2"><a href="data-case-study-2.html#cb251-2"></a><span class="kw">month</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<pre><code>##  [1] 11 12  1  2  3  4  5  6  7  8</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="data-case-study-2.html#cb253-1"></a><span class="kw">month</span>(global_temperatures<span class="op">$</span>dt, <span class="dt">label =</span> <span class="ot">TRUE</span>)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<pre><code>##  [1] Nov Dec Jan Feb Mar Apr May Jun Jul Aug
+## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="data-case-study-2.html#cb255-1"></a><span class="co"># extract week from dt variable in global_temperatures</span></span>
+<span id="cb255-2"><a href="data-case-study-2.html#cb255-2"></a><span class="kw">week</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<pre><code>##  [1] 44 48  1  5  9 14 18 22 27 31</code></pre>
+<p>We can create new columns in our data frame with <code>year</code>, <code>month</code>, and <code>week</code> extracted from <code>dt</code> in our data frame by using <code>mutate</code>.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="data-case-study-2.html#cb257-1"></a>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb257-2"><a href="data-case-study-2.html#cb257-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(dt),</span>
+<span id="cb257-3"><a href="data-case-study-2.html#cb257-3"></a>         <span class="dt">month =</span> <span class="kw">month</span>(dt),</span>
+<span id="cb257-4"><a href="data-case-study-2.html#cb257-4"></a>         <span class="dt">decade =</span> year <span class="op">-</span><span class="st"> </span>(year <span class="op">%%</span><span class="st"> </span><span class="dv">10</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 577,462 x 7
+##    dt         average_temperat… average_temperature_… country  year month decade
+##    &lt;date&gt;                 &lt;dbl&gt;                 &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 1743-11-01              4.38                  2.29 Åland    1743    11   1740
+##  2 1743-12-01             NA                    NA    Åland    1743    12   1740
+##  3 1744-01-01             NA                    NA    Åland    1744     1   1740
+##  4 1744-02-01             NA                    NA    Åland    1744     2   1740
+##  5 1744-03-01             NA                    NA    Åland    1744     3   1740
+##  6 1744-04-01              1.53                  4.68 Åland    1744     4   1740
+##  7 1744-05-01              6.70                  1.79 Åland    1744     5   1740
+##  8 1744-06-01             11.6                   1.58 Åland    1744     6   1740
+##  9 1744-07-01             15.3                   1.41 Åland    1744     7   1740
+## 10 1744-08-01             NA                    NA    Åland    1744     8   1740
+## # … with 577,452 more rows</code></pre>
+<p>Instead of just printing to the console, let’s change the original data frame.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-case-study-2.html#cb259-1"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb259-2"><a href="data-case-study-2.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(dt),</span>
+<span id="cb259-3"><a href="data-case-study-2.html#cb259-3"></a>         <span class="dt">month =</span> <span class="kw">month</span>(dt),</span>
+<span id="cb259-4"><a href="data-case-study-2.html#cb259-4"></a>         <span class="dt">decade =</span> <span class="kw">gsub</span>(<span class="st">&quot;([12][0-9][0-9])[0-9]&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">10&quot;</span>, year))</span>
+<span id="cb259-5"><a href="data-case-study-2.html#cb259-5"></a></span>
+<span id="cb259-6"><a href="data-case-study-2.html#cb259-6"></a><span class="co"># inspect changes</span></span>
+<span id="cb259-7"><a href="data-case-study-2.html#cb259-7"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<pre><code>## Rows: 577,462
+## Columns: 7
+## $ dt                              &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, …
+## $ average_temperature             &lt;dbl&gt; 4.384, NA, NA, NA, NA, 1.530, 6.702, …
+## $ average_temperature_uncertainty &lt;dbl&gt; 2.294, NA, NA, NA, NA, 4.680, 1.789, …
+## $ country                         &lt;chr&gt; &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;…
+## $ year                            &lt;dbl&gt; 1743, 1743, 1744, 1744, 1744, 1744, 1…
+## $ month                           &lt;dbl&gt; 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10…
+## $ decade                          &lt;chr&gt; &quot;1740&quot;, &quot;1740&quot;, &quot;1740&quot;, &quot;1740&quot;, &quot;1740…</code></pre>
+</div>
+<div id="extra-data-libraries" class="section level2">
+<h2><span class="header-section-number">11.4</span> Extra Data libraries</h2>
+<p>If you need some hierarchical information that is not present in your data frame, such as continent based on country, check if there is a package that will do that for you. In our case, we will use the <code>countrycode</code> package.</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-case-study-2.html#cb261-1"></a><span class="co"># make sure you install this library</span></span>
+<span id="cb261-2"><a href="data-case-study-2.html#cb261-2"></a><span class="kw">library</span>(countrycode)</span></code></pre></div>
+<p>Let’s look at our <code>country</code> variable.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="data-case-study-2.html#cb262-1"></a><span class="co"># what does country look like in our data?</span></span>
+<span id="cb262-2"><a href="data-case-study-2.html#cb262-2"></a>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb262-3"><a href="data-case-study-2.html#cb262-3"></a><span class="st">  </span><span class="kw">count</span>(country)</span></code></pre></div>
+<pre><code>## # A tibble: 243 x 2
+##    country            n
+##    &lt;chr&gt;          &lt;int&gt;
+##  1 Afghanistan     2106
+##  2 Africa          1965
+##  3 Åland           3239
+##  4 Albania         3239
+##  5 Algeria         2721
+##  6 American Samoa  1761
+##  7 Andorra         3239
+##  8 Angola          1878
+##  9 Anguilla        2277
+## 10 Antarctica       764
+## # … with 233 more rows</code></pre>
+<p>We use the function <code>countrycode()</code> to get continent from a country name.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-case-study-2.html#cb264-1"></a><span class="co"># create new column called continent</span></span>
+<span id="cb264-2"><a href="data-case-study-2.html#cb264-2"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb264-3"><a href="data-case-study-2.html#cb264-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">continent =</span> <span class="kw">countrycode</span>(<span class="dt">sourcevar =</span> country,</span>
+<span id="cb264-4"><a href="data-case-study-2.html#cb264-4"></a>                            <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>,</span>
+<span id="cb264-5"><a href="data-case-study-2.html#cb264-5"></a>                            <span class="dt">destination =</span> <span class="st">&quot;continent&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Problem with `mutate()` input `continent`.
+## ℹ Some values were not matched unambiguously: Africa, Antarctica, Asia, Baker Island, Europe, French Southern And Antarctic Lands, Heard Island And Mcdonald Islands, Kingman Reef, North America, Oceania, Palmyra Atoll, Saint Martin, South America, South Georgia And The South Sandwich Isla, Virgin Islands
+## 
+## ℹ Input `continent` is `countrycode(sourcevar = country, origin = &quot;country.name&quot;, destination = &quot;continent&quot;)`.</code></pre>
+<pre><code>## Warning in countrycode(sourcevar = country, origin = &quot;country.name&quot;, destination = &quot;continent&quot;): Some values were not matched unambiguously: Africa, Antarctica, Asia, Baker Island, Europe, French Southern And Antarctic Lands, Heard Island And Mcdonald Islands, Kingman Reef, North America, Oceania, Palmyra Atoll, Saint Martin, South America, South Georgia And The South Sandwich Isla, Virgin Islands</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-case-study-2.html#cb267-1"></a><span class="co"># inspect data</span></span>
+<span id="cb267-2"><a href="data-case-study-2.html#cb267-2"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<pre><code>## Rows: 577,462
+## Columns: 8
+## $ dt                              &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, …
+## $ average_temperature             &lt;dbl&gt; 4.384, NA, NA, NA, NA, 1.530, 6.702, …
+## $ average_temperature_uncertainty &lt;dbl&gt; 2.294, NA, NA, NA, NA, 4.680, 1.789, …
+## $ country                         &lt;chr&gt; &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;Åland&quot;, &quot;…
+## $ year                            &lt;dbl&gt; 1743, 1743, 1744, 1744, 1744, 1744, 1…
+## $ month                           &lt;dbl&gt; 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10…
+## $ decade                          &lt;chr&gt; &quot;1740&quot;, &quot;1740&quot;, &quot;1740&quot;, &quot;1740&quot;, &quot;1740…
+## $ continent                       &lt;chr&gt; &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe…</code></pre>
+<p>Always check your data. Let’s look at continent more closely, especially since we got a warning message.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-case-study-2.html#cb269-1"></a><span class="co"># why some continents were not assigned</span></span>
+<span id="cb269-2"><a href="data-case-study-2.html#cb269-2"></a>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb269-3"><a href="data-case-study-2.html#cb269-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(continent)) <span class="op">%&gt;%</span></span>
+<span id="cb269-4"><a href="data-case-study-2.html#cb269-4"></a><span class="st">  </span><span class="kw">distinct</span>(country)</span></code></pre></div>
+<pre><code>## # A tibble: 15 x 1
+##    country                                  
+##    &lt;chr&gt;                                    
+##  1 Africa                                   
+##  2 Antarctica                               
+##  3 Asia                                     
+##  4 Baker Island                             
+##  5 Europe                                   
+##  6 French Southern And Antarctic Lands      
+##  7 Heard Island And Mcdonald Islands        
+##  8 Kingman Reef                             
+##  9 North America                            
+## 10 Oceania                                  
+## 11 Palmyra Atoll                            
+## 12 Saint Martin                             
+## 13 South America                            
+## 14 South Georgia And The South Sandwich Isla
+## 15 Virgin Islands</code></pre>
+<p>It seems we can eliminate the rows with NA for continent.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-case-study-2.html#cb271-1"></a><span class="co"># keep only continents that are not NA</span></span>
+<span id="cb271-2"><a href="data-case-study-2.html#cb271-2"></a>global_temp_continents &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb271-3"><a href="data-case-study-2.html#cb271-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(continent))</span></code></pre></div>
+</div>
+<div id="exploring-data" class="section level2">
+<h2><span class="header-section-number">11.5</span> Exploring Data</h2>
+<p>Now that our data is clean and transformed, what’s our data question? The data frame is still very large, so some summarization would be helpful.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-case-study-2.html#cb272-1"></a>global_temp_continents  <span class="op">%&gt;%</span></span>
+<span id="cb272-2"><a href="data-case-study-2.html#cb272-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade, continent) <span class="op">%&gt;%</span></span>
+<span id="cb272-3"><a href="data-case-study-2.html#cb272-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;decade&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 128 x 3
+## # Groups:   decade [28]
+##    decade continent mean_temp
+##    &lt;chr&gt;  &lt;chr&gt;         &lt;dbl&gt;
+##  1 1740   Americas       2.62
+##  2 1740   Europe         6.98
+##  3 1750   Africa        19.8 
+##  4 1750   Americas       7.30
+##  5 1750   Europe         8.53
+##  6 1760   Africa        19.8 
+##  7 1760   Americas       6.44
+##  8 1760   Europe         8.31
+##  9 1770   Africa        20.1 
+## 10 1770   Americas       6.61
+## # … with 118 more rows</code></pre>
+<p>It’s still a long data frame, plotting helps here.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-case-study-2.html#cb275-1"></a>global_temp_continents  <span class="op">%&gt;%</span></span>
+<span id="cb275-2"><a href="data-case-study-2.html#cb275-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade, continent) <span class="op">%&gt;%</span></span>
+<span id="cb275-3"><a href="data-case-study-2.html#cb275-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb275-4"><a href="data-case-study-2.html#cb275-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_temp, <span class="dt">color =</span> continent)) <span class="op">+</span></span>
+<span id="cb275-5"><a href="data-case-study-2.html#cb275-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;decade&#39; (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p>Looking at the plot above, how reliable do you think these temperatures are? Why?</p>
+<p>Let’s look at Europe only.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-case-study-2.html#cb277-1"></a>europe_temps &lt;-<span class="st"> </span>global_temp_continents  <span class="op">%&gt;%</span></span>
+<span id="cb277-2"><a href="data-case-study-2.html#cb277-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="data-case-study-2.html#cb278-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
+<span id="cb278-2"><a href="data-case-study-2.html#cb278-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade) <span class="op">%&gt;%</span></span>
+<span id="cb278-3"><a href="data-case-study-2.html#cb278-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb278-4"><a href="data-case-study-2.html#cb278-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
+<span id="cb278-5"><a href="data-case-study-2.html#cb278-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p>Now that we have filtered by continent, we can look at <code>year</code> instead of <code>decade</code>, because you have less information to plot (just one continent).</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="data-case-study-2.html#cb280-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
+<span id="cb280-2"><a href="data-case-study-2.html#cb280-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
+<span id="cb280-3"><a href="data-case-study-2.html#cb280-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb280-4"><a href="data-case-study-2.html#cb280-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
+<span id="cb280-5"><a href="data-case-study-2.html#cb280-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p>Let’s look at monthly temperatures</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-case-study-2.html#cb283-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
+<span id="cb283-2"><a href="data-case-study-2.html#cb283-2"></a><span class="st">  </span><span class="kw">group_by</span>(month) <span class="op">%&gt;%</span></span>
+<span id="cb283-3"><a href="data-case-study-2.html#cb283-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb283-4"><a href="data-case-study-2.html#cb283-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
+<span id="cb283-5"><a href="data-case-study-2.html#cb283-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb283-6"><a href="data-case-study-2.html#cb283-6"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>Would this pattern, of temperature increase around June, be the same no matter the continent?</p>
+</div>
+<div id="data-challenge-06" class="section level2">
+<h2><span class="header-section-number">11.6</span> DATA CHALLENGE 06</h2>
+<p>Accept <a href="">data challenge 06 assignment</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-case-study-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="getting-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ESOC_214_Fall_2020.pdf", "ESOC_214_Fall_2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

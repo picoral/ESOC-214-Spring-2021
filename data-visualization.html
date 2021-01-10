@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 8 Data Visualization | ESOC 2014 Introduction to Data Science</title>
+  <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 8 Data Visualization | ESOC 2014 Introduction to Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 8 Data Visualization | ESOC 2014 Introduction to Data Science" />
+  
+  <meta name="twitter:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+<meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
+
+
+<meta name="date" content="2021-01-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-wrangling.html"/>
+<link rel="next" href="data-visualization-ii.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ESOC 214 Introduction to Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.2</b> Course Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#learning-outcomes"><i class="fa fa-check"></i><b>1.3</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-few-words-on-r-and-coding"><i class="fa fa-check"></i><b>1.4</b> A Few Words on R and Coding</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#a-few-words-on-technology"><i class="fa fa-check"></i><b>1.5</b> A Few Words on Technology</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.6</b> Readings</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assignments-with-grade-breakdown"><i class="fa fa-check"></i><b>1.7</b> Assignments with Grade Breakdown</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#requirements-for-the-course"><i class="fa fa-check"></i><b>1.8</b> Requirements for the Course</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#course-schedule"><i class="fa fa-check"></i><b>1.9</b> Course Schedule</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.10</b> Final Project</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#honors-students-requirements"><i class="fa fa-check"></i><b>1.11</b> Honors Students’ Requirements</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#student-accommodations"><i class="fa fa-check"></i><b>1.12</b> Student Accommodations</a></li>
+<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#attendance-due-dates-and-missing-work"><i class="fa fa-check"></i><b>1.13</b> Attendance, Due Dates, and Missing Work</a></li>
+<li class="chapter" data-level="1.14" data-path="index.html"><a href="index.html#course-conduct-and-campus-policies"><i class="fa fa-check"></i><b>1.14</b> Course Conduct and Campus Policies</a></li>
+<li class="chapter" data-level="1.15" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.15</b> Code of Conduct</a><ul>
+<li class="chapter" data-level="1.15.1" data-path="index.html"><a href="index.html#our-pledge"><i class="fa fa-check"></i><b>1.15.1</b> Our Pledge</a></li>
+<li class="chapter" data-level="1.15.2" data-path="index.html"><a href="index.html#our-standards"><i class="fa fa-check"></i><b>1.15.2</b> Our Standards</a></li>
+<li class="chapter" data-level="1.15.3" data-path="index.html"><a href="index.html#enforcement"><i class="fa fa-check"></i><b>1.15.3</b> Enforcement</a></li>
+<li class="chapter" data-level="1.15.4" data-path="index.html"><a href="index.html#attribution"><i class="fa fa-check"></i><b>1.15.4</b> Attribution</a></li>
+</ul></li>
+<li class="chapter" data-level="1.16" data-path="index.html"><a href="index.html#how-to-ask-for-help"><i class="fa fa-check"></i><b>1.16</b> How to Ask For Help</a><ul>
+<li class="chapter" data-level="1.16.1" data-path="index.html"><a href="index.html#before-you-ask-for-help"><i class="fa fa-check"></i><b>1.16.1</b> Before You ask for help</a></li>
+<li class="chapter" data-level="1.16.2" data-path="index.html"><a href="index.html#ask-other-people-for-help"><i class="fa fa-check"></i><b>1.16.2</b> Ask other people for help</a></li>
+<li class="chapter" data-level="1.16.3" data-path="index.html"><a href="index.html#list-of-resources"><i class="fa fa-check"></i><b>1.16.3</b> List of Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="whats-ds.html"><a href="whats-ds.html"><i class="fa fa-check"></i><b>2</b> What’s data science?</a><ul>
+<li class="chapter" data-level="2.1" data-path="whats-ds.html"><a href="whats-ds.html#before-class-1"><i class="fa fa-check"></i><b>2.1</b> Before class #1</a></li>
+<li class="chapter" data-level="2.2" data-path="whats-ds.html"><a href="whats-ds.html#whats-data-science"><i class="fa fa-check"></i><b>2.2</b> What’s data science?</a></li>
+<li class="chapter" data-level="2.3" data-path="whats-ds.html"><a href="whats-ds.html#what-does-a-data-scientist-do"><i class="fa fa-check"></i><b>2.3</b> What does a data scientist do?</a></li>
+<li class="chapter" data-level="2.4" data-path="whats-ds.html"><a href="whats-ds.html#data-science-workflow"><i class="fa fa-check"></i><b>2.4</b> Data Science Workflow</a></li>
+<li class="chapter" data-level="2.5" data-path="whats-ds.html"><a href="whats-ds.html#before-class-2"><i class="fa fa-check"></i><b>2.5</b> Before class #2</a></li>
+<li class="chapter" data-level="2.6" data-path="whats-ds.html"><a href="whats-ds.html#whats-data"><i class="fa fa-check"></i><b>2.6</b> What’s data?</a></li>
+<li class="chapter" data-level="2.7" data-path="whats-ds.html"><a href="whats-ds.html#what-does-data-analysis-look-like"><i class="fa fa-check"></i><b>2.7</b> What does data analysis look like?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>3</b> Exploring our IDE (Rstudio)</a><ul>
+<li class="chapter" data-level="3.1" data-path="install-r.html"><a href="install-r.html#before-class-3"><i class="fa fa-check"></i><b>3.1</b> Before class #3</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="install-r.html"><a href="install-r.html#ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer"><i class="fa fa-check"></i><b>3.1.1</b> I’ve never installed R and RStudio in my computer OR I’m not sure I have R and RStudio installed in my computer</a></li>
+<li class="chapter" data-level="3.1.2" data-path="install-r.html"><a href="install-r.html#i-already-have-r-and-rstudio-installed"><i class="fa fa-check"></i><b>3.1.2</b> I already have R and RStudio installed</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#why-learn-r"><i class="fa fa-check"></i><b>3.2</b> Why learn R?</a></li>
+<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#why-use-rstudio"><i class="fa fa-check"></i><b>3.3</b> Why use RStudio?</a></li>
+<li class="chapter" data-level="3.4" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.4</b> Create an R Project</a></li>
+<li class="chapter" data-level="3.5" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.5</b> Operations and Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#before-class-4"><i class="fa fa-check"></i><b>4.1</b> Before Class #4</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#dataframes"><i class="fa fa-check"></i><b>4.2</b> Dataframes</a></li>
+<li class="chapter" data-level="4.3" data-path="r-basics.html"><a href="r-basics.html#slicing-your-dataframe"><i class="fa fa-check"></i><b>4.3</b> Slicing your dataframe</a></li>
+<li class="chapter" data-level="4.4" data-path="r-basics.html"><a href="r-basics.html#adding-new-variables-i.e.-columns-to-your-dataframe"><i class="fa fa-check"></i><b>4.4</b> Adding new variables (i.e., columns) to your dataframe</a></li>
+<li class="chapter" data-level="4.5" data-path="r-basics.html"><a href="r-basics.html#descriptive-stats-on-dataframes"><i class="fa fa-check"></i><b>4.5</b> Descriptive stats on dataframes</a></li>
+<li class="chapter" data-level="4.6" data-path="r-basics.html"><a href="r-basics.html#note-on-coding-style"><i class="fa fa-check"></i><b>4.6</b> Note on coding style</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>5</b> Version Control</a><ul>
+<li class="chapter" data-level="5.1" data-path="version-control.html"><a href="version-control.html#before-class-5"><i class="fa fa-check"></i><b>5.1</b> Before Class #5</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="version-control.html"><a href="version-control.html#install-git-on-your-computer"><i class="fa fa-check"></i><b>5.1.1</b> Install git on your computer</a></li>
+<li class="chapter" data-level="5.1.2" data-path="version-control.html"><a href="version-control.html#create-a-github-account"><i class="fa fa-check"></i><b>5.1.2</b> Create a GitHub account</a></li>
+<li class="chapter" data-level="5.1.3" data-path="version-control.html"><a href="version-control.html#join-our-github-classroom"><i class="fa fa-check"></i><b>5.1.3</b> Join our GitHub classroom</a></li>
+<li class="chapter" data-level="5.1.4" data-path="version-control.html"><a href="version-control.html#link-rstudio-to-github"><i class="fa fa-check"></i><b>5.1.4</b> Link RStudio to GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="version-control.html"><a href="version-control.html#what-is-version-control"><i class="fa fa-check"></i><b>5.2</b> What is version control?</a></li>
+<li class="chapter" data-level="5.3" data-path="version-control.html"><a href="version-control.html#submitting-assignments"><i class="fa fa-check"></i><b>5.3</b> Submitting assignments</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="version-control.html"><a href="version-control.html#clone-assignment-repository"><i class="fa fa-check"></i><b>5.3.1</b> Clone assignment repository</a></li>
+<li class="chapter" data-level="5.3.2" data-path="version-control.html"><a href="version-control.html#modify-files"><i class="fa fa-check"></i><b>5.3.2</b> Modify files</a></li>
+<li class="chapter" data-level="5.3.3" data-path="version-control.html"><a href="version-control.html#commit-changes"><i class="fa fa-check"></i><b>5.3.3</b> Commit changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html"><i class="fa fa-check"></i><b>6</b> Intro to Tidyverse</a><ul>
+<li class="chapter" data-level="6.1" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-class-6"><i class="fa fa-check"></i><b>6.1</b> Before Class #6</a></li>
+<li class="chapter" data-level="6.2" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#what-are-r-packages"><i class="fa fa-check"></i><b>6.2</b> What are R Packages?</a></li>
+<li class="chapter" data-level="6.3" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>6.3</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.4" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-you-load-your-data"><i class="fa fa-check"></i><b>6.4</b> Before You Load your Data</a></li>
+<li class="chapter" data-level="6.5" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#whats-our-question-again"><i class="fa fa-check"></i><b>6.5</b> What’s our question again?</a></li>
+<li class="chapter" data-level="6.6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>6.6</b> Load Data with Tidyverse</a></li>
+<li class="chapter" data-level="6.7" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#inspect-your-data"><i class="fa fa-check"></i><b>6.7</b> Inspect Your Data</a></li>
+<li class="chapter" data-level="6.8" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#the-pipe"><i class="fa fa-check"></i><b>6.8</b> The Pipe</a></li>
+<li class="chapter" data-level="6.9" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#counting-categorical-variables"><i class="fa fa-check"></i><b>6.9</b> Counting Categorical Variables</a></li>
+<li class="chapter" data-level="6.10" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-summarise"><i class="fa fa-check"></i><b>6.10</b> group_by + summarise</a></li>
+<li class="chapter" data-level="6.11" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-filter"><i class="fa fa-check"></i><b>6.11</b> group_by + filter</a></li>
+<li class="chapter" data-level="6.12" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#pivot-dataframe"><i class="fa fa-check"></i><b>6.12</b> Pivot Dataframe</a></li>
+<li class="chapter" data-level="6.13" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#separating-one-categorical-column-into-two"><i class="fa fa-check"></i><b>6.13</b> Separating one categorical column into two</a></li>
+<li class="chapter" data-level="6.14" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#example-of-plotting"><i class="fa fa-check"></i><b>6.14</b> Example of Plotting</a></li>
+<li class="chapter" data-level="6.15" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-01"><i class="fa fa-check"></i><b>6.15</b> DATA CHALLENGE 01</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>7</b> Data Wrangling</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-wrangling.html"><a href="data-wrangling.html#load-libraries"><i class="fa fa-check"></i><b>7.1</b> Load libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="data-wrangling.html"><a href="data-wrangling.html#read-your-data-in"><i class="fa fa-check"></i><b>7.2</b> Read your data in</a></li>
+<li class="chapter" data-level="7.3" data-path="data-wrangling.html"><a href="data-wrangling.html#summarise-data"><i class="fa fa-check"></i><b>7.3</b> Summarise data</a></li>
+<li class="chapter" data-level="7.4" data-path="data-wrangling.html"><a href="data-wrangling.html#tidy-data"><i class="fa fa-check"></i><b>7.4</b> Tidy data</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="data-wrangling.html"><a href="data-wrangling.html#viz-demo"><i class="fa fa-check"></i><b>7.4.1</b> Viz Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-wrangling.html"><a href="data-wrangling.html#transform-data"><i class="fa fa-check"></i><b>7.5</b> Transform Data</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="data-wrangling.html"><a href="data-wrangling.html#viz-demo-1"><i class="fa fa-check"></i><b>7.5.1</b> Viz Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-wrangling.html"><a href="data-wrangling.html#data-challenge-02"><i class="fa fa-check"></i><b>7.6</b> DATA CHALLENGE 02</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The layered grammar of graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#load-data"><i class="fa fa-check"></i><b>8.2</b> Load data</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#what-to-plot"><i class="fa fa-check"></i><b>8.3</b> What to plot?</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic Mappings</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="data-visualization.html"><a href="data-visualization.html#one-continuous-variable"><i class="fa fa-check"></i><b>8.4.1</b> One continuous variable</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-visualization.html"><a href="data-visualization.html#two-numeric-variables"><i class="fa fa-check"></i><b>8.4.2</b> Two numeric variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#geom_-i.e.-geometric-objects"><i class="fa fa-check"></i><b>8.5</b> geom_ (i.e., Geometric Objects)</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#more-mappings-with-aes"><i class="fa fa-check"></i><b>8.6</b> More mappings with aes()</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>8.7</b> Facets</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualization.html"><a href="data-visualization.html#more-summarize"><i class="fa fa-check"></i><b>8.8</b> More Summarize</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualization.html"><a href="data-visualization.html#data-challenge-03"><i class="fa fa-check"></i><b>8.9</b> DATA CHALLENGE 03</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html"><i class="fa fa-check"></i><b>9</b> Data Visualization II</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-artist"><i class="fa fa-check"></i><b>9.1</b> Data Viz by Artist</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#explore-artist-info"><i class="fa fa-check"></i><b>9.1.1</b> Explore Artist Info</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame-with-selected-artists"><i class="fa fa-check"></i><b>9.1.2</b> Create new data frame with selected artists</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plotting"><i class="fa fa-check"></i><b>9.1.3</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-album"><i class="fa fa-check"></i><b>9.2</b> Data Viz by Album</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame"><i class="fa fa-check"></i><b>9.2.1</b> Create new data frame</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#summarize-data"><i class="fa fa-check"></i><b>9.2.2</b> Summarize data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plot-summarized-data"><i class="fa fa-check"></i><b>9.2.3</b> Plot summarized data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-challenge-04"><i class="fa fa-check"></i><b>9.3</b> DATA CHALLENGE 04</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 1</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-questions"><i class="fa fa-check"></i><b>10.1</b> Data Questions</a></li>
+<li class="chapter" data-level="10.2" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-exploration"><i class="fa fa-check"></i><b>10.2</b> Data Exploration</a></li>
+<li class="chapter" data-level="10.3" data-path="data-case-study-1.html"><a href="data-case-study-1.html#calculate-height-and-weight-relationship"><i class="fa fa-check"></i><b>10.3</b> Calculate height and weight relationship</a></li>
+<li class="chapter" data-level="10.4" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-kilos-per-centimeter-across-years"><i class="fa fa-check"></i><b>10.4</b> Plot kilos per centimeter across years</a></li>
+<li class="chapter" data-level="10.5" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-weight-over-time"><i class="fa fa-check"></i><b>10.5</b> Plot weight over time</a></li>
+<li class="chapter" data-level="10.6" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-over-time"><i class="fa fa-check"></i><b>10.6</b> Plot height over time</a></li>
+<li class="chapter" data-level="10.7" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-filtering"><i class="fa fa-check"></i><b>10.7</b> Data Filtering</a></li>
+<li class="chapter" data-level="10.8" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-and-weight-across-countries-over-the-years"><i class="fa fa-check"></i><b>10.8</b> Plot height and weight across countries over the years</a></li>
+<li class="chapter" data-level="10.9" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.9</b> Solving the problem of team name changes over time</a></li>
+<li class="chapter" data-level="10.10" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-05"><i class="fa fa-check"></i><b>10.10</b> DATA CHALLENGE 05</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a><ul>
+<li class="chapter" data-level="11.1" data-path="data-case-study-2.html"><a href="data-case-study-2.html#reading-data-from-a-url"><i class="fa fa-check"></i><b>11.1</b> Reading data from a URL</a></li>
+<li class="chapter" data-level="11.2" data-path="data-case-study-2.html"><a href="data-case-study-2.html#cleaning-up-column-names"><i class="fa fa-check"></i><b>11.2</b> Cleaning up column names</a></li>
+<li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
+<li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
+<li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a><ul>
+<li class="chapter" data-level="12.1" data-path="getting-data.html"><a href="getting-data.html#search-for-data-sets"><i class="fa fa-check"></i><b>12.1</b> Search for data sets</a></li>
+<li class="chapter" data-level="12.2" data-path="getting-data.html"><a href="getting-data.html#extracting-data-tables-from-pdf-files"><i class="fa fa-check"></i><b>12.2</b> Extracting data tables from pdf files</a></li>
+<li class="chapter" data-level="12.3" data-path="getting-data.html"><a href="getting-data.html#extracting-data-tables-from-websites"><i class="fa fa-check"></i><b>12.3</b> Extracting data tables from websites</a></li>
+<li class="chapter" data-level="12.4" data-path="getting-data.html"><a href="getting-data.html#project-proposal"><i class="fa fa-check"></i><b>12.4</b> Project Proposal</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>13</b> Data Case Study 3</a><ul>
+<li class="chapter" data-level="13.1" data-path="data-case-study-3.html"><a href="data-case-study-3.html#adding-population-info-to-data-frame"><i class="fa fa-check"></i><b>13.1</b> Adding population info to data frame</a></li>
+<li class="chapter" data-level="13.2" data-path="data-case-study-3.html"><a href="data-case-study-3.html#plotting-a-map"><i class="fa fa-check"></i><b>13.2</b> Plotting a map</a></li>
+<li class="chapter" data-level="13.3" data-path="data-case-study-3.html"><a href="data-case-study-3.html#data-challenge-07"><i class="fa fa-check"></i><b>13.3</b> DATA CHALLENGE 07</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>14</b> R Markdown</a><ul>
+<li class="chapter" data-level="14.1" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-r-markdown-file"><i class="fa fa-check"></i><b>14.1</b> Creating a new R Markdown file</a></li>
+<li class="chapter" data-level="14.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>14.2</b> Chunk Options</a></li>
+<li class="chapter" data-level="14.3" data-path="r-markdown.html"><a href="r-markdown.html#change-yaml-header"><i class="fa fa-check"></i><b>14.3</b> Change YAML header</a></li>
+<li class="chapter" data-level="14.4" data-path="r-markdown.html"><a href="r-markdown.html#text-formatting"><i class="fa fa-check"></i><b>14.4</b> Text Formatting</a></li>
+<li class="chapter" data-level="14.5" data-path="r-markdown.html"><a href="r-markdown.html#reading-data"><i class="fa fa-check"></i><b>14.5</b> Reading Data</a></li>
+<li class="chapter" data-level="14.6" data-path="r-markdown.html"><a href="r-markdown.html#data-tables"><i class="fa fa-check"></i><b>14.6</b> Data Tables</a></li>
+<li class="chapter" data-level="14.7" data-path="r-markdown.html"><a href="r-markdown.html#manual-tables"><i class="fa fa-check"></i><b>14.7</b> Manual Tables</a></li>
+<li class="chapter" data-level="14.8" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>14.8</b> Plots</a></li>
+<li class="chapter" data-level="14.9" data-path="r-markdown.html"><a href="r-markdown.html#knitting-pdfs"><i class="fa fa-check"></i><b>14.9</b> Knitting PDFs</a></li>
+<li class="chapter" data-level="14.10" data-path="r-markdown.html"><a href="r-markdown.html#data-challenge-08"><i class="fa fa-check"></i><b>14.10</b> DATA CHALLENGE 08</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>15</b> Data Case Study 4</a><ul>
+<li class="chapter" data-level="15.1" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data"><i class="fa fa-check"></i><b>15.1</b> Data</a></li>
+<li class="chapter" data-level="15.2" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data-wrangling-1"><i class="fa fa-check"></i><b>15.2</b> Data Wrangling</a></li>
+<li class="chapter" data-level="15.3" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data-challenge-09"><i class="fa fa-check"></i><b>15.3</b> DATA CHALLENGE 09</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>16</b> Analysis Reporting</a><ul>
+<li class="chapter" data-level="16.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#types-of-stories"><i class="fa fa-check"></i><b>16.1</b> Types of stories</a></li>
+<li class="chapter" data-level="16.2" data-path="analysis-reporting.html"><a href="analysis-reporting.html#telling-a-story"><i class="fa fa-check"></i><b>16.2</b> Telling a story</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#how-to-tell-the-story"><i class="fa fa-check"></i><b>16.2.1</b> How to tell the story</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="analysis-reporting.html"><a href="analysis-reporting.html#telling-a-story-well"><i class="fa fa-check"></i><b>16.3</b> Telling a story well</a></li>
+<li class="chapter" data-level="16.4" data-path="analysis-reporting.html"><a href="analysis-reporting.html#interactive-dashboards"><i class="fa fa-check"></i><b>16.4</b> Interactive dashboards</a></li>
+<li class="chapter" data-level="16.5" data-path="analysis-reporting.html"><a href="analysis-reporting.html#final-project-submission"><i class="fa fa-check"></i><b>16.5</b> FINAL PROJECT SUBMISSION</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ESOC 2014 Introduction to Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization" class="section level1">
+<h1><span class="header-section-number">Module 8</span> Data Visualization</h1>
+<div id="the-layered-grammar-of-graphics" class="section level2">
+<h2><span class="header-section-number">8.1</span> The layered grammar of graphics</h2>
+<p>The package we will be using for plotting in this class is called <code>ggplot2</code> which is part of <code>tidyverse</code>, and it uses as a principle the idea of layered grammar of graphics. That means you can add code to add or change your plot in layers, by using the <code>+</code> symbol.</p>
+<p>Let’s start with some data, so we can created different plots using different layers.</p>
+</div>
+<div id="load-data" class="section level2">
+<h2><span class="header-section-number">8.2</span> Load data</h2>
+<p>Get data directly from <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv">tidy tuesday github</a>.</p>
+<pre><code>## Rows: 32,833
+## Columns: 23
+## $ track_id                 &lt;chr&gt; &quot;6f807x0ima9a1j3VPbc7VN&quot;, &quot;0r7CVbZTWZgbTCYdf…
+## $ track_name               &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) - Loud Lu…
+## $ track_artist             &lt;chr&gt; &quot;Ed Sheeran&quot;, &quot;Maroon 5&quot;, &quot;Zara Larsson&quot;, &quot;T…
+## $ track_popularity         &lt;dbl&gt; 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58, …
+## $ track_album_id           &lt;chr&gt; &quot;2oCs0DGTsRO98Gh5ZSl2Cx&quot;, &quot;63rPSO264uRjW1X5E…
+## $ track_album_name         &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) [Loud Lux…
+## $ track_album_release_date &lt;chr&gt; &quot;2019-06-14&quot;, &quot;2019-12-13&quot;, &quot;2019-07-05&quot;, &quot;2…
+## $ playlist_name            &lt;chr&gt; &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop …
+## $ playlist_id              &lt;chr&gt; &quot;37i9dQZF1DXcZDD7cfEKhW&quot;, &quot;37i9dQZF1DXcZDD7c…
+## $ playlist_genre           &lt;chr&gt; &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;p…
+## $ playlist_subgenre        &lt;chr&gt; &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;danc…
+## $ danceability             &lt;dbl&gt; 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, 0.…
+## $ energy                   &lt;dbl&gt; 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, 0.…
+## $ key                      &lt;dbl&gt; 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5, 5…
+## $ loudness                 &lt;dbl&gt; -2.634, -4.969, -3.432, -3.778, -4.672, -5.3…
+## $ mode                     &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0,…
+## $ speechiness              &lt;dbl&gt; 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0.12…
+## $ acousticness             &lt;dbl&gt; 0.10200, 0.07240, 0.07940, 0.02870, 0.08030,…
+## $ instrumentalness         &lt;dbl&gt; 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0.00…
+## $ liveness                 &lt;dbl&gt; 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0.14…
+## $ valence                  &lt;dbl&gt; 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, 0.…
+## $ tempo                    &lt;dbl&gt; 122.036, 99.972, 124.008, 121.956, 123.976, …
+## $ duration_ms              &lt;dbl&gt; 194754, 162600, 176616, 169093, 189052, 1630…</code></pre>
+<p>EXERCISE</p>
+<ol style="list-style-type: decimal">
+<li><p>What variables do we have in this data?</p></li>
+<li><p>What questions can you ask about this data?</p></li>
+</ol>
+</div>
+<div id="what-to-plot" class="section level2">
+<h2><span class="header-section-number">8.3</span> What to plot?</h2>
+<p>The first thing you need to do is define what you want to plot. If you’ve never plotted data before, you might not be familiar with the different types of charts you can create.</p>
+<p>Here’s a few (can you tell what type of plot these are?):</p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+<div id="aesthetic-mappings" class="section level2">
+<h2><span class="header-section-number">8.4</span> Aesthetic Mappings</h2>
+<p>You map your aesthetics using the <code>aes()</code> function, which can be place inside of the <code>ggplot()</code> function.</p>
+<div id="one-continuous-variable" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> One continuous variable</h3>
+<p>You need to map at least one variable when you are plotting. Check the help for <code>geom_histogram</code> to see what kind of variable you can plot in a histogram.</p>
+<p>The variable <code>track_popularity</code> is continuous.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-visualization.html#cb150-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb150-2"><a href="data-visualization.html#cb150-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_popularity)) <span class="op">+</span></span>
+<span id="cb150-3"><a href="data-visualization.html#cb150-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>The variable <code>release_year</code> is also continuous.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-visualization.html#cb152-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb152-2"><a href="data-visualization.html#cb152-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year)) <span class="op">+</span></span>
+<span id="cb152-3"><a href="data-visualization.html#cb152-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+</div>
+<div id="two-numeric-variables" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Two numeric variables</h3>
+<p>Two-dimensional plots have two axis, <code>x</code> (horizontal) and <code>y</code> (vertical).</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-visualization.html#cb154-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb154-2"><a href="data-visualization.html#cb154-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb154-3"><a href="data-visualization.html#cb154-3"></a>             <span class="dt">y =</span> track_popularity)) <span class="op">+</span></span>
+<span id="cb154-4"><a href="data-visualization.html#cb154-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+</div>
+</div>
+<div id="geom_-i.e.-geometric-objects" class="section level2">
+<h2><span class="header-section-number">8.5</span> geom_ (i.e., Geometric Objects)</h2>
+<p>Functions such as <code>geom_histogram()</code>, <code>geom_point()</code>, and <code>geom_col()</code> are geometric objects and determine what type of plot R draws.</p>
+<p>You can also map other elements of your chart in addition to position (i.e., <code>x</code> and <code>y</code>), such as color, size, and shape.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-visualization.html#cb155-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb155-2"><a href="data-visualization.html#cb155-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb155-3"><a href="data-visualization.html#cb155-3"></a>             <span class="dt">y =</span> track_popularity,</span>
+<span id="cb155-4"><a href="data-visualization.html#cb155-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb155-5"><a href="data-visualization.html#cb155-5"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<hr/>
+<p>EXERCISE</p>
+<p>Check the help page for <code>geom_point</code> (enter <code>?geom_point</code> in your console).
+Change <code>geom_point()</code> to the suggested variations in its help page.</p>
+<hr/>
+</div>
+<div id="more-mappings-with-aes" class="section level2">
+<h2><span class="header-section-number">8.6</span> More mappings with aes()</h2>
+<p>In addition to <code>color</code> you can also add <code>size</code> and <code>shape</code> to <code>aes()</code>.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-visualization.html#cb156-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb156-2"><a href="data-visualization.html#cb156-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb156-3"><a href="data-visualization.html#cb156-3"></a>             <span class="dt">y =</span> track_popularity,</span>
+<span id="cb156-4"><a href="data-visualization.html#cb156-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
+<span id="cb156-5"><a href="data-visualization.html#cb156-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb156-6"><a href="data-visualization.html#cb156-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>The plot above is too messy, there’s too much information. You often need to transform your data before plotting it.</p>
+<hr/>
+<p>EXERCISE</p>
+<p>Summarize mean <code>track_popularity</code> by <code>release_year</code>, <code>playlist_genre</code> and <code>playlist_subgenre</code>.</p>
+<p>Your summarized data frame should look something like this:</p>
+<pre><code>## `summarise()` regrouping output by &#39;release_year&#39;, &#39;playlist_genre&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 883 x 4
+## # Groups:   release_year, playlist_genre [302]
+##    release_year playlist_genre playlist_subgenre  mean_popularity
+##           &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;                        &lt;dbl&gt;
+##  1         1957 r&amp;b            urban contemporary              59
+##  2         1957 rock           classic rock                     1
+##  3         1958 rock           classic rock                    73
+##  4         1960 r&amp;b            neo soul                        13
+##  5         1960 r&amp;b            urban contemporary              19
+##  6         1961 r&amp;b            urban contemporary              47
+##  7         1962 r&amp;b            urban contemporary              64
+##  8         1962 rock           classic rock                    64
+##  9         1963 r&amp;b            neo soul                        73
+## 10         1963 rock           album rock                      59
+## # … with 873 more rows</code></pre>
+<hr/>
+<p>Now you can plot your summarized data.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-visualization.html#cb159-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb159-2"><a href="data-visualization.html#cb159-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb159-3"><a href="data-visualization.html#cb159-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb159-4"><a href="data-visualization.html#cb159-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
+<span id="cb159-5"><a href="data-visualization.html#cb159-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb159-6"><a href="data-visualization.html#cb159-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>Still super messy. Shape is not really a good way to do this.</p>
+<p>Let’s try a bar plot.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-visualization.html#cb160-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb160-2"><a href="data-visualization.html#cb160-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb160-3"><a href="data-visualization.html#cb160-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb160-4"><a href="data-visualization.html#cb160-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb160-5"><a href="data-visualization.html#cb160-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>Not great either, too much going on.</p>
+</div>
+<div id="facets" class="section level2">
+<h2><span class="header-section-number">8.7</span> Facets</h2>
+<p>You can use the <code>facet_wrap()</code> function to split your plotting into several smaller plots, usually by a categorical variable.</p>
+<p>Let’s try the scatterplot first.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-visualization.html#cb161-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb161-2"><a href="data-visualization.html#cb161-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb161-3"><a href="data-visualization.html#cb161-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb161-4"><a href="data-visualization.html#cb161-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb161-5"><a href="data-visualization.html#cb161-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb161-6"><a href="data-visualization.html#cb161-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p>What about a bar plot?</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-visualization.html#cb162-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb162-2"><a href="data-visualization.html#cb162-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb162-3"><a href="data-visualization.html#cb162-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb162-4"><a href="data-visualization.html#cb162-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb162-5"><a href="data-visualization.html#cb162-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb162-6"><a href="data-visualization.html#cb162-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+</div>
+<div id="more-summarize" class="section level2">
+<h2><span class="header-section-number">8.8</span> More Summarize</h2>
+<p>We can also plot categorical variables on the <code>x</code> axis.</p>
+<hr/>
+<p>EXERCISE</p>
+<p>Summarize mean <code>track_popularity</code> by <code>playlist_genre</code>.</p>
+<p>Your summarized data frame should look something like this:</p>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   playlist_genre mean_popularity
+##   &lt;chr&gt;                    &lt;dbl&gt;
+## 1 edm                       34.8
+## 2 latin                     47.0
+## 3 pop                       47.7
+## 4 r&amp;b                       41.2
+## 5 rap                       43.2
+## 6 rock                      41.7</code></pre>
+<p>Now plot a bar chart mapping <code>x</code> to <code>playlist_genre</code>, <code>y</code> to <code>mean_popularity</code>.</p>
+<p>Your plot should look something like this:</p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+</div>
+<div id="data-challenge-03" class="section level2">
+<h2><span class="header-section-number">8.9</span> DATA CHALLENGE 03</h2>
+<p>Accept <a href="">data challenge 03 assignment</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualization-ii.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ESOC_214_Fall_2020.pdf", "ESOC_214_Fall_2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
