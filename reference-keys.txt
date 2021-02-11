@@ -74,7 +74,6 @@ arrange
 group_by-summarise
 group_by-filter
 example-of-plotting
-data-challenge-02
 data-wrangling
 load-libraries
 read-your-data-in
@@ -83,7 +82,7 @@ tidy-data
 viz-demo
 transform-data
 viz-demo-1
-data-challenge-03
+data-challenge-02
 data-visualization
 the-layered-grammar-of-graphics
 load-data
@@ -95,7 +94,7 @@ geom_-i.e.-geometric-objects
 more-mappings-with-aes
 facets
 more-summarize
-data-challenge-04
+data-challenge-03
 data-visualization-ii
 data-viz-by-artist
 explore-artist-info
