@@ -104,7 +104,7 @@ data-viz-by-album
 create-new-data-frame
 summarize-data
 plot-summarized-data
-data-challenge-05
+data-challenge-04
 data-case-study-1
 data-questions
 data-exploration
