@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2021-03-01" />
+<meta name="date" content="2021-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,13 +263,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-questions"><i class="fa fa-check"></i><b>10.1</b> Data Questions</a></li>
 <li class="chapter" data-level="10.2" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-exploration"><i class="fa fa-check"></i><b>10.2</b> Data Exploration</a></li>
 <li class="chapter" data-level="10.3" data-path="data-case-study-1.html"><a href="data-case-study-1.html#calculate-height-and-weight-relationship"><i class="fa fa-check"></i><b>10.3</b> Calculate height and weight relationship</a></li>
-<li class="chapter" data-level="10.4" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-kilos-per-centimeter-across-years"><i class="fa fa-check"></i><b>10.4</b> Plot kilos per centimeter across years</a></li>
-<li class="chapter" data-level="10.5" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-weight-over-time"><i class="fa fa-check"></i><b>10.5</b> Plot weight over time</a></li>
-<li class="chapter" data-level="10.6" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-over-time"><i class="fa fa-check"></i><b>10.6</b> Plot height over time</a></li>
-<li class="chapter" data-level="10.7" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-filtering"><i class="fa fa-check"></i><b>10.7</b> Data Filtering</a></li>
-<li class="chapter" data-level="10.8" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-and-weight-across-countries-over-the-years"><i class="fa fa-check"></i><b>10.8</b> Plot height and weight across countries over the years</a></li>
-<li class="chapter" data-level="10.9" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.9</b> Solving the problem of team name changes over time</a></li>
-<li class="chapter" data-level="10.10" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-06"><i class="fa fa-check"></i><b>10.10</b> DATA CHALLENGE 06</a></li>
+<li class="chapter" data-level="10.4" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-weight-over-time"><i class="fa fa-check"></i><b>10.4</b> Plot weight over time</a></li>
+<li class="chapter" data-level="10.5" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-over-time"><i class="fa fa-check"></i><b>10.5</b> Plot height over time</a></li>
+<li class="chapter" data-level="10.6" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-filtering"><i class="fa fa-check"></i><b>10.6</b> Data Filtering</a></li>
+<li class="chapter" data-level="10.7" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-and-weight-across-countries-over-the-years"><i class="fa fa-check"></i><b>10.7</b> Plot height and weight across countries over the years</a></li>
+<li class="chapter" data-level="10.8" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.8</b> Solving the problem of team name changes over time</a></li>
+<li class="chapter" data-level="10.9" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-05"><i class="fa fa-check"></i><b>10.9</b> DATA CHALLENGE 05</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a><ul>
 <li class="chapter" data-level="11.1" data-path="data-case-study-2.html"><a href="data-case-study-2.html#reading-data-from-a-url"><i class="fa fa-check"></i><b>11.1</b> Reading data from a URL</a></li>
@@ -381,15 +380,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb354-2"><a href="analysis-reporting.html#cb354-2"></a><span class="kw">glimpse</span>(women_labor_force_data)</span></code></pre></div>
 <pre><code>## Rows: 51
 ## Columns: 9
-## $ no                                    &lt;dbl&gt; 4, 6, 17, 18, 19, 20, 22, 28, 3…
-## $ country                               &lt;chr&gt; &quot;Austria&quot;, &quot;Belgium&quot;, &quot;Estonia&quot;…
-## $ level_of_development                  &lt;chr&gt; &quot;Developed&quot;, &quot;Developed&quot;, &quot;Deve…
-## $ european_union_membership             &lt;chr&gt; &quot;Member&quot;, &quot;Member&quot;, &quot;Member&quot;, &quot;…
-## $ currency                              &lt;chr&gt; &quot;Euro&quot;, &quot;Euro&quot;, &quot;Euro&quot;, &quot;Euro&quot;,…
-## $ women_entrepreneurship_index          &lt;dbl&gt; 54.9, 63.6, 55.4, 66.4, 68.8, 6…
-## $ entrepreneurship_index                &lt;dbl&gt; 64.9, 65.5, 60.2, 65.7, 67.3, 6…
-## $ inflation_rate                        &lt;dbl&gt; 0.90, 0.60, -0.88, -0.20, 0.00,…
-## $ female_labor_force_participation_rate &lt;dbl&gt; 67.10, 58.00, 68.50, 67.70, 60.…</code></pre>
+## $ no                                    &lt;dbl&gt; 4, 6, 17, 18, 19, 20, 22, 28, 30…
+## $ country                               &lt;chr&gt; &quot;Austria&quot;, &quot;Belgium&quot;, &quot;Estonia&quot;,…
+## $ level_of_development                  &lt;chr&gt; &quot;Developed&quot;, &quot;Developed&quot;, &quot;Devel…
+## $ european_union_membership             &lt;chr&gt; &quot;Member&quot;, &quot;Member&quot;, &quot;Member&quot;, &quot;M…
+## $ currency                              &lt;chr&gt; &quot;Euro&quot;, &quot;Euro&quot;, &quot;Euro&quot;, &quot;Euro&quot;, …
+## $ women_entrepreneurship_index          &lt;dbl&gt; 54.9, 63.6, 55.4, 66.4, 68.8, 63…
+## $ entrepreneurship_index                &lt;dbl&gt; 64.9, 65.5, 60.2, 65.7, 67.3, 67…
+## $ inflation_rate                        &lt;dbl&gt; 0.90, 0.60, -0.88, -0.20, 0.00, …
+## $ female_labor_force_participation_rate &lt;dbl&gt; 67.10, 58.00, 68.50, 67.70, 60.6…</code></pre>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="analysis-reporting.html#cb356-1"></a><span class="co"># boxplot of level of development (binary) vs inflation rate</span></span>
 <span id="cb356-2"><a href="analysis-reporting.html#cb356-2"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
 <span id="cb356-3"><a href="analysis-reporting.html#cb356-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> level_of_development,</span>
@@ -399,7 +398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb356-7"><a href="analysis-reporting.html#cb356-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Level of Development&quot;</span>,</span>
 <span id="cb356-8"><a href="analysis-reporting.html#cb356-8"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
 <span id="cb356-9"><a href="analysis-reporting.html#cb356-9"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation by Development across different countries&quot;</span>)</span></code></pre></div>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="analysis-reporting.html#cb357-1"></a><span class="co"># scatterplot with regression line of inflation rate</span></span>
 <span id="cb357-2"><a href="analysis-reporting.html#cb357-2"></a><span class="co"># vs entrepreneurship index</span></span>
 <span id="cb357-3"><a href="analysis-reporting.html#cb357-3"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
@@ -412,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb357-10"><a href="analysis-reporting.html#cb357-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Entrepreneurship Index&quot;</span>,</span>
 <span id="cb357-11"><a href="analysis-reporting.html#cb357-11"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
 <span id="cb357-12"><a href="analysis-reporting.html#cb357-12"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Entrepreneurship&quot;</span>)</span></code></pre></div>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="analysis-reporting.html#cb358-1"></a><span class="co"># run regression and get summary of results</span></span>
 <span id="cb358-2"><a href="analysis-reporting.html#cb358-2"></a>model_<span class="dv">1</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
 <span id="cb358-3"><a href="analysis-reporting.html#cb358-3"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>entrepreneurship_index) <span class="op">%&gt;%</span></span>
@@ -490,7 +489,7 @@ entrepreneurship_index
 <span id="cb359-10"><a href="analysis-reporting.html#cb359-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Women Entrepreneurship Index&quot;</span>,</span>
 <span id="cb359-11"><a href="analysis-reporting.html#cb359-11"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
 <span id="cb359-12"><a href="analysis-reporting.html#cb359-12"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Women Entrepreneurship&quot;</span>)</span></code></pre></div>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="analysis-reporting.html#cb360-1"></a><span class="co"># run regression and get summary of results</span></span>
 <span id="cb360-2"><a href="analysis-reporting.html#cb360-2"></a>model_<span class="dv">2</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
 <span id="cb360-3"><a href="analysis-reporting.html#cb360-3"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>women_entrepreneurship_index) <span class="op">%&gt;%</span></span>
