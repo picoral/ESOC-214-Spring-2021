@@ -262,13 +262,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 1</a><ul>
 <li class="chapter" data-level="10.1" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-questions"><i class="fa fa-check"></i><b>10.1</b> Data Questions</a></li>
 <li class="chapter" data-level="10.2" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-exploration"><i class="fa fa-check"></i><b>10.2</b> Data Exploration</a></li>
-<li class="chapter" data-level="10.3" data-path="data-case-study-1.html"><a href="data-case-study-1.html#calculate-height-and-weight-relationship"><i class="fa fa-check"></i><b>10.3</b> Calculate height and weight relationship</a></li>
-<li class="chapter" data-level="10.4" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-weight-over-time"><i class="fa fa-check"></i><b>10.4</b> Plot weight over time</a></li>
-<li class="chapter" data-level="10.5" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-over-time"><i class="fa fa-check"></i><b>10.5</b> Plot height over time</a></li>
-<li class="chapter" data-level="10.6" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-filtering"><i class="fa fa-check"></i><b>10.6</b> Data Filtering</a></li>
-<li class="chapter" data-level="10.7" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-and-weight-across-countries-over-the-years"><i class="fa fa-check"></i><b>10.7</b> Plot height and weight across countries over the years</a></li>
-<li class="chapter" data-level="10.8" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.8</b> Solving the problem of team name changes over time</a></li>
-<li class="chapter" data-level="10.9" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-05"><i class="fa fa-check"></i><b>10.9</b> DATA CHALLENGE 05</a></li>
+<li class="chapter" data-level="10.3" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-weight-over-time"><i class="fa fa-check"></i><b>10.3</b> Plot weight over time</a></li>
+<li class="chapter" data-level="10.4" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-over-time"><i class="fa fa-check"></i><b>10.4</b> Plot height over time</a></li>
+<li class="chapter" data-level="10.5" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-filtering"><i class="fa fa-check"></i><b>10.5</b> Data Filtering</a></li>
+<li class="chapter" data-level="10.6" data-path="data-case-study-1.html"><a href="data-case-study-1.html#plot-height-and-weight-across-countries-over-the-years"><i class="fa fa-check"></i><b>10.6</b> Plot height and weight across countries over the years</a></li>
+<li class="chapter" data-level="10.7" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.7</b> Solving the problem of team name changes over time</a></li>
+<li class="chapter" data-level="10.8" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-05"><i class="fa fa-check"></i><b>10.8</b> DATA CHALLENGE 05</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a><ul>
 <li class="chapter" data-level="11.1" data-path="data-case-study-2.html"><a href="data-case-study-2.html#reading-data-from-a-url"><i class="fa fa-check"></i><b>11.1</b> Reading data from a URL</a></li>
@@ -456,34 +455,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Great Britain Silver   582
 ## # … with 773 more rows</code></pre>
 </div>
-<div id="calculate-height-and-weight-relationship" class="section level2">
-<h2><span class="header-section-number">10.3</span> Calculate height and weight relationship</h2>
-<p>It’s difficult to plot three numeric variables (in this case we want to plot weight, height, across different years) with so many data points. So I’ll create a new variable in my data frame with is the relationship between height and weight (i.e., kg per cm).</p>
-<pre><code>## # A tibble: 271,116 x 3
-##    Weight Height kg_per_cm
-##     &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-##  1     80    180     0.444
-##  2     60    170     0.353
-##  3     NA     NA    NA    
-##  4     NA     NA    NA    
-##  5     82    185     0.443
-##  6     82    185     0.443
-##  7     82    185     0.443
-##  8     82    185     0.443
-##  9     82    185     0.443
-## 10     82    185     0.443
-## # … with 271,106 more rows</code></pre>
-</div>
 <div id="plot-weight-over-time" class="section level2">
-<h2><span class="header-section-number">10.4</span> Plot weight over time</h2>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<h2><span class="header-section-number">10.3</span> Plot weight over time</h2>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 </div>
 <div id="plot-height-over-time" class="section level2">
-<h2><span class="header-section-number">10.5</span> Plot height over time</h2>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<h2><span class="header-section-number">10.4</span> Plot height over time</h2>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 </div>
 <div id="data-filtering" class="section level2">
-<h2><span class="header-section-number">10.6</span> Data Filtering</h2>
+<h2><span class="header-section-number">10.5</span> Data Filtering</h2>
 <p>Get only top 5 countries for highest medal count</p>
 <pre><code>## # A tibble: 5 x 2
 ##   Team              n
@@ -495,34 +476,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 France         1550</code></pre>
 <p>Create a list of these countries to filter the largest data set to create a smaller data frame.</p>
 <pre><code>## Rows: 56,100
-## Columns: 16
-## $ ID        &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 34, 52, 56, …
-## $ Name      &lt;chr&gt; &quot;Per Knut Aaland&quot;, &quot;Per Knut Aaland&quot;, &quot;Per Knut Aaland&quot;, &quot;Pe…
-## $ Sex       &lt;chr&gt; &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, …
-## $ Age       &lt;dbl&gt; 31, 31, 31, 31, 33, 33, 33, 33, 31, 31, 31, 31, 33, 33, 33, …
-## $ Height    &lt;dbl&gt; 188, 188, 188, 188, 188, 188, 188, 188, 183, 183, 183, 183, …
-## $ Weight    &lt;dbl&gt; 75, 75, 75, 75, 75, 75, 75, 75, 72, 72, 72, 72, 72, 72, 72, …
-## $ Team      &lt;chr&gt; &quot;United States&quot;, &quot;United States&quot;, &quot;United States&quot;, &quot;United S…
-## $ NOC       &lt;chr&gt; &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA…
-## $ Games     &lt;chr&gt; &quot;1992 Winter&quot;, &quot;1992 Winter&quot;, &quot;1992 Winter&quot;, &quot;1992 Winter&quot;, …
-## $ Year      &lt;dbl&gt; 1992, 1992, 1992, 1992, 1994, 1994, 1994, 1994, 1992, 1992, …
-## $ Season    &lt;chr&gt; &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, …
-## $ City      &lt;chr&gt; &quot;Albertville&quot;, &quot;Albertville&quot;, &quot;Albertville&quot;, &quot;Albertville&quot;, …
-## $ Sport     &lt;chr&gt; &quot;Cross Country Skiing&quot;, &quot;Cross Country Skiing&quot;, &quot;Cross Count…
-## $ Event     &lt;chr&gt; &quot;Cross Country Skiing Men&#39;s 10 kilometres&quot;, &quot;Cross Country S…
-## $ Medal     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-## $ kg_per_cm &lt;dbl&gt; 0.3989362, 0.3989362, 0.3989362, 0.3989362, 0.3989362, 0.398…</code></pre>
+## Columns: 15
+## $ ID     &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 34, 52, 56, 56,…
+## $ Name   &lt;chr&gt; &quot;Per Knut Aaland&quot;, &quot;Per Knut Aaland&quot;, &quot;Per Knut Aaland&quot;, &quot;Per K…
+## $ Sex    &lt;chr&gt; &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;…
+## $ Age    &lt;dbl&gt; 31, 31, 31, 31, 33, 33, 33, 33, 31, 31, 31, 31, 33, 33, 33, 33,…
+## $ Height &lt;dbl&gt; 188, 188, 188, 188, 188, 188, 188, 188, 183, 183, 183, 183, 183…
+## $ Weight &lt;dbl&gt; 75, 75, 75, 75, 75, 75, 75, 75, 72, 72, 72, 72, 72, 72, 72, 72,…
+## $ Team   &lt;chr&gt; &quot;United States&quot;, &quot;United States&quot;, &quot;United States&quot;, &quot;United Stat…
+## $ NOC    &lt;chr&gt; &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;, …
+## $ Games  &lt;chr&gt; &quot;1992 Winter&quot;, &quot;1992 Winter&quot;, &quot;1992 Winter&quot;, &quot;1992 Winter&quot;, &quot;19…
+## $ Year   &lt;dbl&gt; 1992, 1992, 1992, 1992, 1994, 1994, 1994, 1994, 1992, 1992, 199…
+## $ Season &lt;chr&gt; &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, &quot;Winter&quot;, &quot;Wi…
+## $ City   &lt;chr&gt; &quot;Albertville&quot;, &quot;Albertville&quot;, &quot;Albertville&quot;, &quot;Albertville&quot;, &quot;Li…
+## $ Sport  &lt;chr&gt; &quot;Cross Country Skiing&quot;, &quot;Cross Country Skiing&quot;, &quot;Cross Country …
+## $ Event  &lt;chr&gt; &quot;Cross Country Skiing Men&#39;s 10 kilometres&quot;, &quot;Cross Country Skii…
+## $ Medal  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</code></pre>
 </div>
 <div id="plot-height-and-weight-across-countries-over-the-years" class="section level2">
-<h2><span class="header-section-number">10.7</span> Plot height and weight across countries over the years</h2>
+<h2><span class="header-section-number">10.6</span> Plot height and weight across countries over the years</h2>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 </div>
 <div id="solving-the-problem-of-team-name-changes-over-time" class="section level2">
-<h2><span class="header-section-number">10.8</span> Solving the problem of team name changes over time</h2>
+<h2><span class="header-section-number">10.7</span> Solving the problem of team name changes over time</h2>
 <p>We can use name of Olympic committee (<code>NOC</code>) to standardized Team to country</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="data-case-study-1.html#cb221-1"></a>olympic_events <span class="op">%&gt;%</span></span>
-<span id="cb221-2"><a href="data-case-study-1.html#cb221-2"></a><span class="st">  </span><span class="kw">count</span>(NOC, Team)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-case-study-1.html#cb220-1"></a>olympic_events <span class="op">%&gt;%</span></span>
+<span id="cb220-2"><a href="data-case-study-1.html#cb220-2"></a><span class="st">  </span><span class="kw">count</span>(NOC, Team)</span></code></pre></div>
 <pre><code>## # A tibble: 1,231 x 3
 ##    NOC   Team                     n
 ##    &lt;chr&gt; &lt;chr&gt;                &lt;int&gt;
@@ -538,7 +518,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 ARG   Acturus                  2
 ## # … with 1,221 more rows</code></pre>
 <p>The <code>olympic_noc_regions</code> data frame can help with that process.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="data-case-study-1.html#cb223-1"></a><span class="kw">head</span>(olympic_noc_regions)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-case-study-1.html#cb222-1"></a><span class="kw">head</span>(olympic_noc_regions)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   NOC   region      notes               
 ##   &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;               
@@ -549,11 +529,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 AND   Andorra     &lt;NA&gt;                
 ## 6 ANG   Angola      &lt;NA&gt;</code></pre>
 <p>We can add region to our <code>olympic_events</code> data frame by joining the <code>olympic_events</code> data frame with the <code>olympic_noc_regions</code> data frame by the <code>NOC</code> column. For that we will use the <code>left_join()</code> function.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="data-case-study-1.html#cb225-1"></a>olympic_events &lt;-<span class="st"> </span><span class="kw">left_join</span>(olympic_events,</span>
-<span id="cb225-2"><a href="data-case-study-1.html#cb225-2"></a>                       olympic_noc_regions)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="data-case-study-1.html#cb224-1"></a>olympic_events &lt;-<span class="st"> </span><span class="kw">left_join</span>(olympic_events,</span>
+<span id="cb224-2"><a href="data-case-study-1.html#cb224-2"></a>                       olympic_noc_regions)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;NOC&quot;</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="data-case-study-1.html#cb227-1"></a>olympic_events <span class="op">%&gt;%</span></span>
-<span id="cb227-2"><a href="data-case-study-1.html#cb227-2"></a><span class="st">  </span><span class="kw">count</span>(NOC, region)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="data-case-study-1.html#cb226-1"></a>olympic_events <span class="op">%&gt;%</span></span>
+<span id="cb226-2"><a href="data-case-study-1.html#cb226-2"></a><span class="st">  </span><span class="kw">count</span>(NOC, region)</span></code></pre></div>
 <pre><code>## # A tibble: 230 x 3
 ##    NOC   region          n
 ##    &lt;chr&gt; &lt;chr&gt;       &lt;int&gt;
@@ -569,9 +549,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 ARM   Armenia       221
 ## # … with 220 more rows</code></pre>
 <p>Let’s check what we have for Russia now.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="data-case-study-1.html#cb229-1"></a>olympic_events <span class="op">%&gt;%</span></span>
-<span id="cb229-2"><a href="data-case-study-1.html#cb229-2"></a><span class="st">  </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;Russia&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb229-3"><a href="data-case-study-1.html#cb229-3"></a><span class="st">  </span><span class="kw">count</span>(NOC, region)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-case-study-1.html#cb228-1"></a>olympic_events <span class="op">%&gt;%</span></span>
+<span id="cb228-2"><a href="data-case-study-1.html#cb228-2"></a><span class="st">  </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;Russia&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb228-3"><a href="data-case-study-1.html#cb228-3"></a><span class="st">  </span><span class="kw">count</span>(NOC, region)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   NOC   region     n
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;
@@ -590,7 +570,7 @@ Get only top 5 countries for highest medal count</p>
 ## 5 France   1777</code></pre>
 </div>
 <div id="data-challenge-05" class="section level2">
-<h2><span class="header-section-number">10.9</span> DATA CHALLENGE 05</h2>
+<h2><span class="header-section-number">10.8</span> DATA CHALLENGE 05</h2>
 <p>Accept <a href="https://classroom.github.com/a/lxjBRX4h">data challenge 05 assignment</a></p>
 
 </div>

@@ -4380,37 +4380,15 @@ What are the top countries for medal count?
 ## # ... with 773 more rows
 \end{verbatim}
 
-\hypertarget{calculate-height-and-weight-relationship}{%
-\section{Calculate height and weight relationship}\label{calculate-height-and-weight-relationship}}
-
-It's difficult to plot three numeric variables (in this case we want to plot weight, height, across different years) with so many data points. So I'll create a new variable in my data frame with is the relationship between height and weight (i.e., kg per cm).
-
-\begin{verbatim}
-## # A tibble: 271,116 x 3
-##    Weight Height kg_per_cm
-##     <dbl>  <dbl>     <dbl>
-##  1     80    180     0.444
-##  2     60    170     0.353
-##  3     NA     NA    NA    
-##  4     NA     NA    NA    
-##  5     82    185     0.443
-##  6     82    185     0.443
-##  7     82    185     0.443
-##  8     82    185     0.443
-##  9     82    185     0.443
-## 10     82    185     0.443
-## # ... with 271,106 more rows
-\end{verbatim}
-
 \hypertarget{plot-weight-over-time}{%
 \section{Plot weight over time}\label{plot-weight-over-time}}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-119-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-118-1.pdf}
 
 \hypertarget{plot-height-over-time}{%
 \section{Plot height over time}\label{plot-height-over-time}}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-120-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-119-1.pdf}
 
 \hypertarget{data-filtering}{%
 \section{Data Filtering}\label{data-filtering}}
@@ -4432,31 +4410,30 @@ Create a list of these countries to filter the largest data set to create a smal
 
 \begin{verbatim}
 ## Rows: 56,100
-## Columns: 16
-## $ ID        <dbl> 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 34, 52, 56, ~
-## $ Name      <chr> "Per Knut Aaland", "Per Knut Aaland", "Per Knut Aaland", "Pe~
-## $ Sex       <chr> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", ~
-## $ Age       <dbl> 31, 31, 31, 31, 33, 33, 33, 33, 31, 31, 31, 31, 33, 33, 33, ~
-## $ Height    <dbl> 188, 188, 188, 188, 188, 188, 188, 188, 183, 183, 183, 183, ~
-## $ Weight    <dbl> 75, 75, 75, 75, 75, 75, 75, 75, 72, 72, 72, 72, 72, 72, 72, ~
-## $ Team      <chr> "United States", "United States", "United States", "United S~
-## $ NOC       <chr> "USA", "USA", "USA", "USA", "USA", "USA", "USA", "USA", "USA~
-## $ Games     <chr> "1992 Winter", "1992 Winter", "1992 Winter", "1992 Winter", ~
-## $ Year      <dbl> 1992, 1992, 1992, 1992, 1994, 1994, 1994, 1994, 1992, 1992, ~
-## $ Season    <chr> "Winter", "Winter", "Winter", "Winter", "Winter", "Winter", ~
-## $ City      <chr> "Albertville", "Albertville", "Albertville", "Albertville", ~
-## $ Sport     <chr> "Cross Country Skiing", "Cross Country Skiing", "Cross Count~
-## $ Event     <chr> "Cross Country Skiing Men's 10 kilometres", "Cross Country S~
-## $ Medal     <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ~
-## $ kg_per_cm <dbl> 0.3989362, 0.3989362, 0.3989362, 0.3989362, 0.3989362, 0.398~
+## Columns: 15
+## $ ID     <dbl> 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 34, 52, 56, 56,~
+## $ Name   <chr> "Per Knut Aaland", "Per Knut Aaland", "Per Knut Aaland", "Per K~
+## $ Sex    <chr> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M"~
+## $ Age    <dbl> 31, 31, 31, 31, 33, 33, 33, 33, 31, 31, 31, 31, 33, 33, 33, 33,~
+## $ Height <dbl> 188, 188, 188, 188, 188, 188, 188, 188, 183, 183, 183, 183, 183~
+## $ Weight <dbl> 75, 75, 75, 75, 75, 75, 75, 75, 72, 72, 72, 72, 72, 72, 72, 72,~
+## $ Team   <chr> "United States", "United States", "United States", "United Stat~
+## $ NOC    <chr> "USA", "USA", "USA", "USA", "USA", "USA", "USA", "USA", "USA", ~
+## $ Games  <chr> "1992 Winter", "1992 Winter", "1992 Winter", "1992 Winter", "19~
+## $ Year   <dbl> 1992, 1992, 1992, 1992, 1994, 1994, 1994, 1994, 1992, 1992, 199~
+## $ Season <chr> "Winter", "Winter", "Winter", "Winter", "Winter", "Winter", "Wi~
+## $ City   <chr> "Albertville", "Albertville", "Albertville", "Albertville", "Li~
+## $ Sport  <chr> "Cross Country Skiing", "Cross Country Skiing", "Cross Country ~
+## $ Event  <chr> "Cross Country Skiing Men's 10 kilometres", "Cross Country Skii~
+## $ Medal  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,~
 \end{verbatim}
 
 \hypertarget{plot-height-and-weight-across-countries-over-the-years}{%
 \section{Plot height and weight across countries over the years}\label{plot-height-and-weight-across-countries-over-the-years}}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-122-1.pdf}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-123-1.pdf}
 
 \hypertarget{solving-the-problem-of-team-name-changes-over-time}{%
 \section{Solving the problem of team name changes over time}\label{solving-the-problem-of-team-name-changes-over-time}}
@@ -4962,7 +4939,7 @@ It's still a long data frame, plotting helps here.
 ## `summarise()` regrouping output by 'decade' (override with `.groups` argument)
 \end{verbatim}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-142-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-141-1.pdf}
 
 Looking at the plot above, how reliable do you think these temperatures are? Why?
 
@@ -4989,7 +4966,7 @@ Let's look at Europe only.
 ## `summarise()` ungrouping output (override with `.groups` argument)
 \end{verbatim}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-144-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 Now that we have filtered by continent, we can look at \texttt{year} instead of \texttt{decade}, because you have less information to plot (just one continent).
 
@@ -5011,7 +4988,7 @@ Now that we have filtered by continent, we can look at \texttt{year} instead of 
 ## Warning: Removed 4 rows containing missing values (geom_point).
 \end{verbatim}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-145-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-144-1.pdf}
 
 Let's look at monthly temperatures
 
@@ -5030,7 +5007,7 @@ Let's look at monthly temperatures
 ## `summarise()` ungrouping output (override with `.groups` argument)
 \end{verbatim}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-146-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-145-1.pdf}
 
 Would this pattern, of temperature increase around June, be the same no matter the continent?
 
@@ -6237,7 +6214,7 @@ We can now plot the data.
 ## substituted for <93>
 \end{verbatim}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-160-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-159-1.pdf}
 
 \hypertarget{extracting-data-tables-from-websites}{%
 \section{Extracting data tables from websites}\label{extracting-data-tables-from-websites}}
@@ -6415,7 +6392,7 @@ Plot it.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \hypertarget{project-proposal}{%
 \section{Project Proposal}\label{project-proposal}}
@@ -6589,7 +6566,7 @@ Finally, we draw a scatter plot of award count (\texttt{n}) by population size (
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 \hypertarget{plotting-a-map}{%
 \section{Plotting a map}\label{plotting-a-map}}
@@ -6606,7 +6583,7 @@ We can now plot a map, using the \texttt{plot\_usmpa} function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-179-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-178-1.pdf}
 
 Let's make it look nicer by moving the legend right.
 
@@ -6619,7 +6596,7 @@ Let's make it look nicer by moving the legend right.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-179-1.pdf}
 
 We can also change the title of the legend.
 
@@ -6633,7 +6610,7 @@ We can also change the title of the legend.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 People usually associate darker colors with higher density or higher values. Let's change the colors to define a light color for our \texttt{low} values and a dark color for our \texttt{high} values. Check this documentation for \href{http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf}{color names in R}.
 
@@ -6649,7 +6626,7 @@ People usually associate darker colors with higher density or higher values. Let
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-182-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-181-1.pdf}
 
 \hypertarget{data-challenge-08}{%
 \section{DATA CHALLENGE 08}\label{data-challenge-08}}
@@ -6782,7 +6759,7 @@ Use the function \texttt{kable()} to print out nice tables.
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-193}Total number of beer awards per region (1987-2020)}
+\caption{\label{tab:unnamed-chunk-192}Total number of beer awards per region (1987-2020)}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
@@ -6805,7 +6782,7 @@ Whenever you have results with decimals, you can specify the number of digitis t
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-195}Average number of beer awards per state across regions}
+\caption{\label{tab:unnamed-chunk-194}Average number of beer awards per state across regions}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
@@ -6853,7 +6830,7 @@ There are also a number of options that you can use for displaying plots nicely.
 
 \includegraphics[width=20.39in]{images/nice_plot}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-197-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 \hypertarget{knitting-pdfs}{%
 \section{Knitting PDFs}\label{knitting-pdfs}}
@@ -6921,7 +6898,7 @@ We need to apply the following steps:
 
 How many votes total for each candidate?
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-199-1.pdf}
 
 We can get electoral votes per state. The best table I found is from \href{https://en.wikipedia.org/wiki/United_States_Electoral_College\#:~:text=Electoral\%20votes\%2C\%20out\%20of\%20538,entitled\%20to\%20at\%20least\%203.}{wikipedia}
 
@@ -6968,11 +6945,11 @@ Now we can add electoral votes to winner by state data.
 
 Plot it!
 
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-203-1.pdf}
+
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-205-1.pdf}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-206-1.pdf}
 
 \hypertarget{data-challenge-09}{%
 \section{DATA CHALLENGE 09}\label{data-challenge-09}}
@@ -7076,7 +7053,7 @@ The data we are using for this module was obtained from \href{https://www.kaggle
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-208-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7095,7 +7072,7 @@ The data we are using for this module was obtained from \href{https://www.kaggle
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-209-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7139,7 +7116,7 @@ The relationship between inflation and entrepreneurship is negative, with inflat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-212-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-211-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]

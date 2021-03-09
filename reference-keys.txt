@@ -1,6 +1,6 @@
 fig:unnamed-chunk-3
-tab:unnamed-chunk-193
-tab:unnamed-chunk-195
+tab:unnamed-chunk-192
+tab:unnamed-chunk-194
 syllabus
 course-description
 course-objectives
@@ -108,7 +108,6 @@ data-challenge-04
 data-case-study-1
 data-questions
 data-exploration
-calculate-height-and-weight-relationship
 plot-weight-over-time
 plot-height-over-time
 data-filtering
