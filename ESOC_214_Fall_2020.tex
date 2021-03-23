@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Spring 2021}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2021-03-09}
+\date{2021-03-23}
 
 \begin{document}
 \maketitle
@@ -543,7 +543,7 @@ Data analysis case study 2\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Getting Data\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-\href{}{Data Challenge 6}\strut
+\href{https://classroom.github.com/a/MuuK7xMS}{Data Challenge 6}\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Week 12\strut
@@ -2271,10 +2271,6 @@ And instead of \texttt{count()} we can use the \texttt{summarise()} and \texttt{
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
-\begin{verbatim}
 ## # A tibble: 13 x 2
 ##    vaccines                              total
 ##    <chr>                                 <int>
@@ -2318,10 +2314,6 @@ Tables are easier to read when then are arranges by some logical order. In the c
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
-\begin{verbatim}
 ## # A tibble: 13 x 2
 ##    vaccines                              total
 ##    <chr>                                 <int>
@@ -2350,10 +2342,6 @@ The default order for \texttt{arrange()} is \textbf{increasing}. We can invert t
 \StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{total)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \begin{verbatim}
 ## # A tibble: 13 x 2
@@ -2585,10 +2573,6 @@ Let's summarise the \texttt{mean} salary for Quarterback \texttt{by\ year}.
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
-\begin{verbatim}
 ## # A tibble: 8 x 2
 ##    year quarterback_mean_salary
 ##   <dbl>                   <dbl>
@@ -2612,10 +2596,6 @@ What would we do to add the mean salary for \texttt{Cornerback}?
             \DataTypeTok{cornerback_mean_salary =} \KeywordTok{mean}\NormalTok{(Cornerback, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \begin{verbatim}
 ## # A tibble: 8 x 3
@@ -2785,7 +2765,7 @@ Now we can do our salary \texttt{summarise()} in a cleaner way. We are going to 
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -2818,7 +2798,7 @@ We can do the group\_by both ways (first \texttt{year} and then \texttt{position
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+## `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -2851,7 +2831,7 @@ Add a \texttt{-} (minus) sign to the argument in \texttt{arrange()} to arrange y
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+## `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -2884,7 +2864,7 @@ We can also add \texttt{arrange()} to our code block.
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+## `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -2922,7 +2902,7 @@ First we save our summary results in a new dataframe called \texttt{nfl\_salary\
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+## `summarise()` has grouped output by 'position'. You can override using the `.groups` argument.
 \end{verbatim}
 
 Then we plot it.
@@ -2959,7 +2939,7 @@ We can check this is true by creating a \texttt{sum()} of salaries for each year
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -2993,7 +2973,7 @@ We can then add \texttt{mutate()} to our code block to calculate \texttt{sum()} 
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -3028,7 +3008,7 @@ Now we can calculate the percentage cost of each position by the total salaries 
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -3064,7 +3044,7 @@ Add \texttt{arrange()} to see higher percentages at the top.
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -3105,7 +3085,7 @@ First we save our summary results in a new dataframe called \texttt{nfl\_salary\
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 \end{verbatim}
 
 Then we plot it.
@@ -3371,7 +3351,7 @@ Summarize mean \texttt{track\_popularity} by \texttt{release\_year}, \texttt{pla
 Your summarized data frame should look something like this:
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'release_year', 'playlist_genre' (override with `.groups` argument)
+## `summarise()` has grouped output by 'release_year', 'playlist_genre'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -3470,10 +3450,6 @@ EXERCISE
 Summarize mean \texttt{track\_popularity} by \texttt{playlist\_genre}.
 
 Your summarized data frame should look something like this:
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \begin{verbatim}
 ## # A tibble: 6 x 2
@@ -3727,7 +3703,7 @@ Let's look at \texttt{track\_popularity} by artist across decade. For this, we n
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-97-1.pdf}
@@ -3745,7 +3721,7 @@ How would this plot look like as a bar plot?
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-98-1.pdf}
@@ -3765,7 +3741,7 @@ We have multiple songs per artists, so we can include standard deviation in our 
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -3802,7 +3778,7 @@ NAs in our data frame is a problem. We can add \texttt{mutate} with \texttt{repl
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -3844,7 +3820,7 @@ The data frame looks good, let's add the plot code lines to the block of code ab
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-101-1.pdf}
@@ -3865,7 +3841,7 @@ It looks the same as before. Let's add \texttt{geom\_errorbar} to it with \textt
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -3908,7 +3884,7 @@ Now we can use \texttt{geom\_errorbar}.
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-103-1.pdf}
@@ -3934,7 +3910,7 @@ We can do a similar chart but look at the \texttt{2010} decade only.
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+## `summarise()` has grouped output by 'track_artist'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-104-1.pdf}
@@ -3956,10 +3932,6 @@ We can also collapse decade, and just look at popularity overall.
 \StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-105-1.pdf}
 
@@ -4067,10 +4039,6 @@ Now we summarize our data for mean popularity per album.
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
-\begin{verbatim}
 ## # A tibble: 27 x 2
 ##    track_album_name                     mean_popularity
 ##    <chr>                                          <dbl>
@@ -4102,10 +4070,6 @@ We now add the \texttt{ggplot} code lines to our summarized data frame.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-109-1.pdf}
 
 Let's order the songs by \texttt{mean\_popularity}.
@@ -4119,10 +4083,6 @@ Let's order the songs by \texttt{mean\_popularity}.
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-110-1.pdf}
 
@@ -4139,10 +4099,6 @@ We can add labels to the bars, with the mean\_popularity for each album using \t
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-111-1.pdf}
 
 We need to clean up the means. We can do that using \texttt{format}.
@@ -4157,10 +4113,6 @@ We need to clean up the means. We can do that using \texttt{format}.
 \StringTok{  }\KeywordTok{geom_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{format}\NormalTok{(mean_popularity, }\DataTypeTok{digits =} \DecValTok{1}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-112-1.pdf}
 
@@ -4180,10 +4132,6 @@ We can clean up our chart even more.
 \StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Albums by Drake"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-113-1.pdf}
 
@@ -4816,13 +4764,6 @@ We use the function \texttt{countrycode()} to get continent from a country name.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Problem with `mutate()` input `continent`.
-## i Some values were not matched unambiguously: Africa, Antarctica, Asia, Baker Island, Europe, French Southern And Antarctic Lands, Heard Island And Mcdonald Islands, Kingman Reef, North America, Oceania, Palmyra Atoll, Saint Martin, South America, South Georgia And The South Sandwich Isla, Virgin Islands
-## 
-## i Input `continent` is `countrycode(sourcevar = country, origin = "country.name", destination = "continent")`.
-\end{verbatim}
-
-\begin{verbatim}
 ## Warning in countrycode(sourcevar = country, origin = "country.name", destination = "continent"): Some values were not matched unambiguously: Africa, Antarctica, Asia, Baker Island, Europe, French Southern And Antarctic Lands, Heard Island And Mcdonald Islands, Kingman Reef, North America, Oceania, Palmyra Atoll, Saint Martin, South America, South Georgia And The South Sandwich Isla, Virgin Islands
 \end{verbatim}
 
@@ -4902,7 +4843,7 @@ Now that our data is clean and transformed, what's our data question? The data f
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'decade' (override with `.groups` argument)
+## `summarise()` has grouped output by 'decade'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \begin{verbatim}
@@ -4936,7 +4877,7 @@ It's still a long data frame, plotting helps here.
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` regrouping output by 'decade' (override with `.groups` argument)
+## `summarise()` has grouped output by 'decade'. You can override using the `.groups` argument.
 \end{verbatim}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-141-1.pdf}
@@ -4962,10 +4903,6 @@ Let's look at Europe only.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 Now that we have filtered by continent, we can look at \texttt{year} instead of \texttt{decade}, because you have less information to plot (just one continent).
@@ -4979,10 +4916,6 @@ Now that we have filtered by continent, we can look at \texttt{year} instead of 
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
 
 \begin{verbatim}
 ## Warning: Removed 4 rows containing missing values (geom_point).
@@ -5003,18 +4936,14 @@ Let's look at monthly temperatures
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-145-1.pdf}
 
 Would this pattern, of temperature increase around June, be the same no matter the continent?
 
-\hypertarget{data-challenge-07}{%
-\section{DATA CHALLENGE 07}\label{data-challenge-07}}
+\hypertarget{data-challenge-06}{%
+\section{DATA CHALLENGE 06}\label{data-challenge-06}}
 
-Accept \href{}{data challenge 07 assignment}
+Accept \href{https://classroom.github.com/a/MuuK7xMS}{data challenge 06 assignment}
 
 \hypertarget{getting-data}{%
 \chapter{Getting Data}\label{getting-data}}

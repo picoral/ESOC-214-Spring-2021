@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
 <li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
 <li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
-<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-07"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 07</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="getting-data.html"><a href="getting-data.html#search-for-data-sets"><i class="fa fa-check"></i><b>12.1</b> Search for data sets</a></li>
@@ -441,12 +439,12 @@ What genres are their songs classfied as?</p>
 <div id="create-new-data-frame-with-selected-artists" class="section level3">
 <h3><span class="header-section-number">9.1.2</span> Create new data frame with selected artists</h3>
 <p>Create another data frame that is a subset of the original <code>spotify_songs</code> data frame to start visualizing info about the artists you chose.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-visualization-ii.html#cb166-1"></a><span class="co"># filter original data frame to create new data frame with selected artists</span></span>
-<span id="cb166-2"><a href="data-visualization-ii.html#cb166-2"></a>spotify_tc_tv_q &lt;-<span class="st"> </span>spotify_songs <span class="op">%&gt;%</span></span>
-<span id="cb166-3"><a href="data-visualization-ii.html#cb166-3"></a><span class="st">  </span><span class="kw">filter</span>(track_artist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;The Cranberries&#39;</span>, <span class="st">&#39;The Beatles&#39;</span>, <span class="st">&#39;Queen&#39;</span>))</span>
-<span id="cb166-4"><a href="data-visualization-ii.html#cb166-4"></a></span>
-<span id="cb166-5"><a href="data-visualization-ii.html#cb166-5"></a><span class="co"># inspect new data frame</span></span>
-<span id="cb166-6"><a href="data-visualization-ii.html#cb166-6"></a><span class="kw">glimpse</span>(spotify_tc_tv_q)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-visualization-ii.html#cb160-1"></a><span class="co"># filter original data frame to create new data frame with selected artists</span></span>
+<span id="cb160-2"><a href="data-visualization-ii.html#cb160-2"></a>spotify_tc_tv_q &lt;-<span class="st"> </span>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb160-3"><a href="data-visualization-ii.html#cb160-3"></a><span class="st">  </span><span class="kw">filter</span>(track_artist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;The Cranberries&#39;</span>, <span class="st">&#39;The Beatles&#39;</span>, <span class="st">&#39;Queen&#39;</span>))</span>
+<span id="cb160-4"><a href="data-visualization-ii.html#cb160-4"></a></span>
+<span id="cb160-5"><a href="data-visualization-ii.html#cb160-5"></a><span class="co"># inspect new data frame</span></span>
+<span id="cb160-6"><a href="data-visualization-ii.html#cb160-6"></a><span class="kw">glimpse</span>(spotify_tc_tv_q)</span></code></pre></div>
 <pre><code>## Rows: 200
 ## Columns: 25
 ## $ track_id                 &lt;chr&gt; &quot;7hQJA50XrCWABAu5v6QZ4i&quot;, &quot;1lpFXKKckqVkyAN1lP…
@@ -478,44 +476,44 @@ What genres are their songs classfied as?</p>
 <div id="plotting" class="section level3">
 <h3><span class="header-section-number">9.1.3</span> Plotting</h3>
 <p>Plot song count (x) by <code>decade</code> (y) the songs were release across <code>track_artist</code> (color). You need a <code>count</code> of <code>track_artist</code> and <code>decade</code> for this plot.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-visualization-ii.html#cb168-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb168-2"><a href="data-visualization-ii.html#cb168-2"></a><span class="st">  </span><span class="kw">count</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb168-3"><a href="data-visualization-ii.html#cb168-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> n, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb168-4"><a href="data-visualization-ii.html#cb168-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-visualization-ii.html#cb162-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb162-2"><a href="data-visualization-ii.html#cb162-2"></a><span class="st">  </span><span class="kw">count</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb162-3"><a href="data-visualization-ii.html#cb162-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> n, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb162-4"><a href="data-visualization-ii.html#cb162-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <p>To make tendencies clearer, we can add <code>geom_line</code> to our plot. We need a new aesthetics for the lines to connect the right points, called <code>group</code>. In this case, <code>group</code> takes the same variable as the <code>color</code> mapping.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="data-visualization-ii.html#cb169-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb169-2"><a href="data-visualization-ii.html#cb169-2"></a><span class="st">  </span><span class="kw">count</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb169-3"><a href="data-visualization-ii.html#cb169-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> n, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb169-4"><a href="data-visualization-ii.html#cb169-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb169-5"><a href="data-visualization-ii.html#cb169-5"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> track_artist))</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-visualization-ii.html#cb163-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb163-2"><a href="data-visualization-ii.html#cb163-2"></a><span class="st">  </span><span class="kw">count</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb163-3"><a href="data-visualization-ii.html#cb163-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> n, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb163-4"><a href="data-visualization-ii.html#cb163-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb163-5"><a href="data-visualization-ii.html#cb163-5"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> track_artist))</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>From the plot above, what can we conclude about the selected artists? When did they start releasing songs?</p>
 <p>Let’s look at <code>track_popularity</code> by artist across decade. For this, we need <code>group_by</code> and <code>summarise</code> before we can build our plot.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-visualization-ii.html#cb170-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb170-2"><a href="data-visualization-ii.html#cb170-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb170-3"><a href="data-visualization-ii.html#cb170-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb170-4"><a href="data-visualization-ii.html#cb170-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb170-5"><a href="data-visualization-ii.html#cb170-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb170-6"><a href="data-visualization-ii.html#cb170-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> track_artist))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-visualization-ii.html#cb164-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb164-2"><a href="data-visualization-ii.html#cb164-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb164-3"><a href="data-visualization-ii.html#cb164-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb164-4"><a href="data-visualization-ii.html#cb164-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb164-5"><a href="data-visualization-ii.html#cb164-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb164-6"><a href="data-visualization-ii.html#cb164-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> track_artist))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <p>How would this plot look like as a bar plot?</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-visualization-ii.html#cb172-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb172-2"><a href="data-visualization-ii.html#cb172-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb172-3"><a href="data-visualization-ii.html#cb172-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb172-4"><a href="data-visualization-ii.html#cb172-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb172-5"><a href="data-visualization-ii.html#cb172-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-visualization-ii.html#cb166-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb166-2"><a href="data-visualization-ii.html#cb166-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb166-3"><a href="data-visualization-ii.html#cb166-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb166-4"><a href="data-visualization-ii.html#cb166-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb166-5"><a href="data-visualization-ii.html#cb166-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <p>Which chart do you think is easier to read? Why?</p>
 <p>We have multiple songs per artists, so we can include standard deviation in our <code>summarise</code>.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-visualization-ii.html#cb174-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb174-2"><a href="data-visualization-ii.html#cb174-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb174-3"><a href="data-visualization-ii.html#cb174-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb174-4"><a href="data-visualization-ii.html#cb174-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
-<span id="cb174-5"><a href="data-visualization-ii.html#cb174-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-visualization-ii.html#cb168-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb168-2"><a href="data-visualization-ii.html#cb168-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb168-3"><a href="data-visualization-ii.html#cb168-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb168-4"><a href="data-visualization-ii.html#cb168-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb168-5"><a href="data-visualization-ii.html#cb168-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 13 x 5
 ## # Groups:   track_artist [3]
 ##    track_artist    decade     n mean_popularity sd_popularity
@@ -534,13 +532,13 @@ What genres are their songs classfied as?</p>
 ## 12 The Cranberries   2000     2            35.5          3.54
 ## 13 The Cranberries   2010    12            37.6         12.3</code></pre>
 <p>NAs in our data frame is a problem. We can add <code>mutate</code> with <code>replace_na</code> to replace these NAs with zero.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="data-visualization-ii.html#cb177-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb177-2"><a href="data-visualization-ii.html#cb177-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb177-3"><a href="data-visualization-ii.html#cb177-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb177-4"><a href="data-visualization-ii.html#cb177-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
-<span id="cb177-5"><a href="data-visualization-ii.html#cb177-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb177-6"><a href="data-visualization-ii.html#cb177-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-visualization-ii.html#cb171-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb171-2"><a href="data-visualization-ii.html#cb171-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb171-3"><a href="data-visualization-ii.html#cb171-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb171-4"><a href="data-visualization-ii.html#cb171-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb171-5"><a href="data-visualization-ii.html#cb171-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb171-6"><a href="data-visualization-ii.html#cb171-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 13 x 5
 ## # Groups:   track_artist [3]
 ##    track_artist    decade     n mean_popularity sd_popularity
@@ -559,29 +557,29 @@ What genres are their songs classfied as?</p>
 ## 12 The Cranberries   2000     2            35.5          3.54
 ## 13 The Cranberries   2010    12            37.6         12.3</code></pre>
 <p>The data frame looks good, let’s add the plot code lines to the block of code above. This time, let’s do a bar chart faceted by <code>track_artist</code>.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-visualization-ii.html#cb180-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb180-2"><a href="data-visualization-ii.html#cb180-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb180-3"><a href="data-visualization-ii.html#cb180-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb180-4"><a href="data-visualization-ii.html#cb180-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
-<span id="cb180-5"><a href="data-visualization-ii.html#cb180-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb180-6"><a href="data-visualization-ii.html#cb180-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
-<span id="cb180-7"><a href="data-visualization-ii.html#cb180-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
-<span id="cb180-8"><a href="data-visualization-ii.html#cb180-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
-<span id="cb180-9"><a href="data-visualization-ii.html#cb180-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb180-10"><a href="data-visualization-ii.html#cb180-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb180-11"><a href="data-visualization-ii.html#cb180-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>track_artist)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-visualization-ii.html#cb174-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb174-2"><a href="data-visualization-ii.html#cb174-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb174-3"><a href="data-visualization-ii.html#cb174-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb174-4"><a href="data-visualization-ii.html#cb174-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb174-5"><a href="data-visualization-ii.html#cb174-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb174-6"><a href="data-visualization-ii.html#cb174-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb174-7"><a href="data-visualization-ii.html#cb174-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb174-8"><a href="data-visualization-ii.html#cb174-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb174-9"><a href="data-visualization-ii.html#cb174-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb174-10"><a href="data-visualization-ii.html#cb174-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb174-11"><a href="data-visualization-ii.html#cb174-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>track_artist)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <p>It looks the same as before. Let’s add <code>geom_errorbar</code> to it with <code>ymin</code> and <code>ymax</code> mappings. For that, we need to transform our data frame with <code>mutate</code> to calculate <code>lower</code> and <code>upper</code> variables, which represent the mean <strong>minus</strong> the standard deviation for the lower value of the range, and mean <strong>plus</strong> standard deviation for the upper value of the range.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-visualization-ii.html#cb182-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb182-2"><a href="data-visualization-ii.html#cb182-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb182-3"><a href="data-visualization-ii.html#cb182-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb182-4"><a href="data-visualization-ii.html#cb182-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
-<span id="cb182-5"><a href="data-visualization-ii.html#cb182-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb182-6"><a href="data-visualization-ii.html#cb182-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
-<span id="cb182-7"><a href="data-visualization-ii.html#cb182-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
-<span id="cb182-8"><a href="data-visualization-ii.html#cb182-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity) </span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-visualization-ii.html#cb176-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb176-2"><a href="data-visualization-ii.html#cb176-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb176-3"><a href="data-visualization-ii.html#cb176-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb176-4"><a href="data-visualization-ii.html#cb176-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb176-5"><a href="data-visualization-ii.html#cb176-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb176-6"><a href="data-visualization-ii.html#cb176-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb176-7"><a href="data-visualization-ii.html#cb176-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb176-8"><a href="data-visualization-ii.html#cb176-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity) </span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 13 x 7
 ## # Groups:   track_artist [3]
 ##    track_artist    decade     n mean_popularity sd_popularity lower upper
@@ -600,49 +598,48 @@ What genres are their songs classfied as?</p>
 ## 12 The Cranberries   2000     2            35.5          3.54 32.0   39.0
 ## 13 The Cranberries   2010    12            37.6         12.3  25.2   49.9</code></pre>
 <p>Now we can use <code>geom_errorbar</code>.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="data-visualization-ii.html#cb185-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb185-2"><a href="data-visualization-ii.html#cb185-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb185-3"><a href="data-visualization-ii.html#cb185-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb185-4"><a href="data-visualization-ii.html#cb185-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
-<span id="cb185-5"><a href="data-visualization-ii.html#cb185-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb185-6"><a href="data-visualization-ii.html#cb185-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
-<span id="cb185-7"><a href="data-visualization-ii.html#cb185-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
-<span id="cb185-8"><a href="data-visualization-ii.html#cb185-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
-<span id="cb185-9"><a href="data-visualization-ii.html#cb185-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb185-10"><a href="data-visualization-ii.html#cb185-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb185-11"><a href="data-visualization-ii.html#cb185-11"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></span>
-<span id="cb185-12"><a href="data-visualization-ii.html#cb185-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>track_artist)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="data-visualization-ii.html#cb179-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb179-2"><a href="data-visualization-ii.html#cb179-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb179-3"><a href="data-visualization-ii.html#cb179-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb179-4"><a href="data-visualization-ii.html#cb179-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb179-5"><a href="data-visualization-ii.html#cb179-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb179-6"><a href="data-visualization-ii.html#cb179-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb179-7"><a href="data-visualization-ii.html#cb179-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb179-8"><a href="data-visualization-ii.html#cb179-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb179-9"><a href="data-visualization-ii.html#cb179-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb179-10"><a href="data-visualization-ii.html#cb179-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb179-11"><a href="data-visualization-ii.html#cb179-11"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></span>
+<span id="cb179-12"><a href="data-visualization-ii.html#cb179-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>track_artist)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>We can do a similar chart but look at the <code>2010</code> decade only.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="data-visualization-ii.html#cb187-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb187-2"><a href="data-visualization-ii.html#cb187-2"></a><span class="st">  </span><span class="kw">filter</span>(decade <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>) <span class="op">%&gt;%</span></span>
-<span id="cb187-3"><a href="data-visualization-ii.html#cb187-3"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
-<span id="cb187-4"><a href="data-visualization-ii.html#cb187-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb187-5"><a href="data-visualization-ii.html#cb187-5"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
-<span id="cb187-6"><a href="data-visualization-ii.html#cb187-6"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb187-7"><a href="data-visualization-ii.html#cb187-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
-<span id="cb187-8"><a href="data-visualization-ii.html#cb187-8"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
-<span id="cb187-9"><a href="data-visualization-ii.html#cb187-9"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
-<span id="cb187-10"><a href="data-visualization-ii.html#cb187-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_artist, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb187-11"><a href="data-visualization-ii.html#cb187-11"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb187-12"><a href="data-visualization-ii.html#cb187-12"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></span>
-<span id="cb187-13"><a href="data-visualization-ii.html#cb187-13"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>decade)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="data-visualization-ii.html#cb181-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb181-2"><a href="data-visualization-ii.html#cb181-2"></a><span class="st">  </span><span class="kw">filter</span>(decade <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>) <span class="op">%&gt;%</span></span>
+<span id="cb181-3"><a href="data-visualization-ii.html#cb181-3"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb181-4"><a href="data-visualization-ii.html#cb181-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb181-5"><a href="data-visualization-ii.html#cb181-5"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb181-6"><a href="data-visualization-ii.html#cb181-6"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb181-7"><a href="data-visualization-ii.html#cb181-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb181-8"><a href="data-visualization-ii.html#cb181-8"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb181-9"><a href="data-visualization-ii.html#cb181-9"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb181-10"><a href="data-visualization-ii.html#cb181-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_artist, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb181-11"><a href="data-visualization-ii.html#cb181-11"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb181-12"><a href="data-visualization-ii.html#cb181-12"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></span>
+<span id="cb181-13"><a href="data-visualization-ii.html#cb181-13"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>decade)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;track_artist&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>We can also collapse decade, and just look at popularity overall.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="data-visualization-ii.html#cb189-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
-<span id="cb189-2"><a href="data-visualization-ii.html#cb189-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist) <span class="op">%&gt;%</span></span>
-<span id="cb189-3"><a href="data-visualization-ii.html#cb189-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb189-4"><a href="data-visualization-ii.html#cb189-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
-<span id="cb189-5"><a href="data-visualization-ii.html#cb189-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb189-6"><a href="data-visualization-ii.html#cb189-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
-<span id="cb189-7"><a href="data-visualization-ii.html#cb189-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
-<span id="cb189-8"><a href="data-visualization-ii.html#cb189-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
-<span id="cb189-9"><a href="data-visualization-ii.html#cb189-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_artist, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
-<span id="cb189-10"><a href="data-visualization-ii.html#cb189-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb189-11"><a href="data-visualization-ii.html#cb189-11"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) </span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="data-visualization-ii.html#cb183-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb183-2"><a href="data-visualization-ii.html#cb183-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist) <span class="op">%&gt;%</span></span>
+<span id="cb183-3"><a href="data-visualization-ii.html#cb183-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb183-4"><a href="data-visualization-ii.html#cb183-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb183-5"><a href="data-visualization-ii.html#cb183-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb183-6"><a href="data-visualization-ii.html#cb183-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb183-7"><a href="data-visualization-ii.html#cb183-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb183-8"><a href="data-visualization-ii.html#cb183-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb183-9"><a href="data-visualization-ii.html#cb183-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_artist, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb183-10"><a href="data-visualization-ii.html#cb183-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb183-11"><a href="data-visualization-ii.html#cb183-11"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) </span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 </div>
 </div>
@@ -658,12 +655,12 @@ What genres are their songs classfied as?</p>
 <div id="create-new-data-frame" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Create new data frame</h3>
 <p>We first filter our data frame by artist.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="data-visualization-ii.html#cb191-1"></a><span class="co"># filter original data frame to create new data frame with selected artists</span></span>
-<span id="cb191-2"><a href="data-visualization-ii.html#cb191-2"></a>spotify_drake &lt;-<span class="st"> </span>spotify_songs <span class="op">%&gt;%</span></span>
-<span id="cb191-3"><a href="data-visualization-ii.html#cb191-3"></a><span class="st">  </span><span class="kw">filter</span>(track_artist <span class="op">==</span><span class="st"> &#39;Drake&#39;</span>)</span>
-<span id="cb191-4"><a href="data-visualization-ii.html#cb191-4"></a></span>
-<span id="cb191-5"><a href="data-visualization-ii.html#cb191-5"></a><span class="co"># inspect new data frame</span></span>
-<span id="cb191-6"><a href="data-visualization-ii.html#cb191-6"></a><span class="kw">glimpse</span>(spotify_drake)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-visualization-ii.html#cb184-1"></a><span class="co"># filter original data frame to create new data frame with selected artists</span></span>
+<span id="cb184-2"><a href="data-visualization-ii.html#cb184-2"></a>spotify_drake &lt;-<span class="st"> </span>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb184-3"><a href="data-visualization-ii.html#cb184-3"></a><span class="st">  </span><span class="kw">filter</span>(track_artist <span class="op">==</span><span class="st"> &#39;Drake&#39;</span>)</span>
+<span id="cb184-4"><a href="data-visualization-ii.html#cb184-4"></a></span>
+<span id="cb184-5"><a href="data-visualization-ii.html#cb184-5"></a><span class="co"># inspect new data frame</span></span>
+<span id="cb184-6"><a href="data-visualization-ii.html#cb184-6"></a><span class="kw">glimpse</span>(spotify_drake)</span></code></pre></div>
 <pre><code>## Rows: 100
 ## Columns: 25
 ## $ track_id                 &lt;chr&gt; &quot;76P07ei8drjrenqtvDbefy&quot;, &quot;1xznGGDReH1oQq0xzb…
@@ -692,9 +689,9 @@ What genres are their songs classfied as?</p>
 ## $ release_year             &lt;dbl&gt; 2016, 2016, 2016, 2010, 2016, 2015, 2016, 201…
 ## $ decade                   &lt;dbl&gt; 2010, 2010, 2010, 2010, 2010, 2010, 2010, 201…</code></pre>
 <p>What albums are there in this new data frame?</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="data-visualization-ii.html#cb193-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
-<span id="cb193-2"><a href="data-visualization-ii.html#cb193-2"></a><span class="st">  </span><span class="kw">count</span>(track_album_name) <span class="op">%&gt;%</span></span>
-<span id="cb193-3"><a href="data-visualization-ii.html#cb193-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>n)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-visualization-ii.html#cb186-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb186-2"><a href="data-visualization-ii.html#cb186-2"></a><span class="st">  </span><span class="kw">count</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb186-3"><a href="data-visualization-ii.html#cb186-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>n)</span></code></pre></div>
 <pre><code>## # A tibble: 27 x 2
 ##    track_album_name                                          n
 ##    &lt;chr&gt;                                                 &lt;int&gt;
@@ -713,10 +710,9 @@ What genres are their songs classfied as?</p>
 <div id="summarize-data" class="section level3">
 <h3><span class="header-section-number">9.2.2</span> Summarize data</h3>
 <p>Now we summarize our data for mean popularity per album.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="data-visualization-ii.html#cb195-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
-<span id="cb195-2"><a href="data-visualization-ii.html#cb195-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
-<span id="cb195-3"><a href="data-visualization-ii.html#cb195-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="data-visualization-ii.html#cb188-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb188-2"><a href="data-visualization-ii.html#cb188-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb188-3"><a href="data-visualization-ii.html#cb188-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity))</span></code></pre></div>
 <pre><code>## # A tibble: 27 x 2
 ##    track_album_name                     mean_popularity
 ##    &lt;chr&gt;                                          &lt;dbl&gt;
@@ -735,51 +731,46 @@ What genres are their songs classfied as?</p>
 <div id="plot-summarized-data" class="section level3">
 <h3><span class="header-section-number">9.2.3</span> Plot summarized data</h3>
 <p>We now add the <code>ggplot</code> code lines to our summarized data frame.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="data-visualization-ii.html#cb198-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
-<span id="cb198-2"><a href="data-visualization-ii.html#cb198-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
-<span id="cb198-3"><a href="data-visualization-ii.html#cb198-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb198-4"><a href="data-visualization-ii.html#cb198-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> track_album_name, <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
-<span id="cb198-5"><a href="data-visualization-ii.html#cb198-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-visualization-ii.html#cb190-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb190-2"><a href="data-visualization-ii.html#cb190-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb190-3"><a href="data-visualization-ii.html#cb190-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb190-4"><a href="data-visualization-ii.html#cb190-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> track_album_name, <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb190-5"><a href="data-visualization-ii.html#cb190-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p>Let’s order the songs by <code>mean_popularity</code>.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-visualization-ii.html#cb200-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
-<span id="cb200-2"><a href="data-visualization-ii.html#cb200-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
-<span id="cb200-3"><a href="data-visualization-ii.html#cb200-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb200-4"><a href="data-visualization-ii.html#cb200-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
-<span id="cb200-5"><a href="data-visualization-ii.html#cb200-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="data-visualization-ii.html#cb191-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb191-2"><a href="data-visualization-ii.html#cb191-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb191-3"><a href="data-visualization-ii.html#cb191-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb191-4"><a href="data-visualization-ii.html#cb191-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb191-5"><a href="data-visualization-ii.html#cb191-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <p>We can add labels to the bars, with the mean_popularity for each album using <code>geom_label</code>. A new mapping is needed for <code>label</code>, which is the same as the x mapping in this case.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="data-visualization-ii.html#cb202-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
-<span id="cb202-2"><a href="data-visualization-ii.html#cb202-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
-<span id="cb202-3"><a href="data-visualization-ii.html#cb202-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb202-4"><a href="data-visualization-ii.html#cb202-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
-<span id="cb202-5"><a href="data-visualization-ii.html#cb202-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb202-6"><a href="data-visualization-ii.html#cb202-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> mean_popularity))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-visualization-ii.html#cb192-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb192-2"><a href="data-visualization-ii.html#cb192-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb192-3"><a href="data-visualization-ii.html#cb192-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb192-4"><a href="data-visualization-ii.html#cb192-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb192-5"><a href="data-visualization-ii.html#cb192-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb192-6"><a href="data-visualization-ii.html#cb192-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> mean_popularity))</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p>We need to clean up the means. We can do that using <code>format</code>.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-visualization-ii.html#cb204-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
-<span id="cb204-2"><a href="data-visualization-ii.html#cb204-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
-<span id="cb204-3"><a href="data-visualization-ii.html#cb204-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb204-4"><a href="data-visualization-ii.html#cb204-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
-<span id="cb204-5"><a href="data-visualization-ii.html#cb204-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb204-6"><a href="data-visualization-ii.html#cb204-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">format</span>(mean_popularity, <span class="dt">digits =</span> <span class="dv">1</span>)))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="data-visualization-ii.html#cb193-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb193-2"><a href="data-visualization-ii.html#cb193-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb193-3"><a href="data-visualization-ii.html#cb193-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb193-4"><a href="data-visualization-ii.html#cb193-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb193-5"><a href="data-visualization-ii.html#cb193-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb193-6"><a href="data-visualization-ii.html#cb193-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">format</span>(mean_popularity, <span class="dt">digits =</span> <span class="dv">1</span>)))</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <p>We can clean up our chart even more.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-visualization-ii.html#cb206-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
-<span id="cb206-2"><a href="data-visualization-ii.html#cb206-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
-<span id="cb206-3"><a href="data-visualization-ii.html#cb206-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
-<span id="cb206-4"><a href="data-visualization-ii.html#cb206-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
-<span id="cb206-5"><a href="data-visualization-ii.html#cb206-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb206-6"><a href="data-visualization-ii.html#cb206-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">format</span>(mean_popularity, <span class="dt">digits =</span> <span class="dv">1</span>))) <span class="op">+</span></span>
-<span id="cb206-7"><a href="data-visualization-ii.html#cb206-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;mean popularity&quot;</span>) <span class="op">+</span></span>
-<span id="cb206-8"><a href="data-visualization-ii.html#cb206-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb206-9"><a href="data-visualization-ii.html#cb206-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb206-10"><a href="data-visualization-ii.html#cb206-10"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Albums by Drake&quot;</span>)</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-visualization-ii.html#cb194-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb194-2"><a href="data-visualization-ii.html#cb194-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb194-3"><a href="data-visualization-ii.html#cb194-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb194-4"><a href="data-visualization-ii.html#cb194-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb194-5"><a href="data-visualization-ii.html#cb194-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb194-6"><a href="data-visualization-ii.html#cb194-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">format</span>(mean_popularity, <span class="dt">digits =</span> <span class="dv">1</span>))) <span class="op">+</span></span>
+<span id="cb194-7"><a href="data-visualization-ii.html#cb194-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;mean popularity&quot;</span>) <span class="op">+</span></span>
+<span id="cb194-8"><a href="data-visualization-ii.html#cb194-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb194-9"><a href="data-visualization-ii.html#cb194-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb194-10"><a href="data-visualization-ii.html#cb194-10"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Albums by Drake&quot;</span>)</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
 </div>
 </div>

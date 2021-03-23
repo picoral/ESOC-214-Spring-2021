@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
 <li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
 <li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
-<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-07"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 07</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="getting-data.html"><a href="getting-data.html#search-for-data-sets"><i class="fa fa-check"></i><b>12.1</b> Search for data sets</a></li>
@@ -425,25 +423,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">8.4.1</span> One continuous variable</h3>
 <p>You need to map at least one variable when you are plotting. Check the help for <code>geom_histogram</code> to see what kind of variable you can plot in a histogram.</p>
 <p>The variable <code>track_popularity</code> is continuous.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-visualization.html#cb145-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
-<span id="cb145-2"><a href="data-visualization.html#cb145-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_popularity)) <span class="op">+</span></span>
-<span id="cb145-3"><a href="data-visualization.html#cb145-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-visualization.html#cb140-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb140-2"><a href="data-visualization.html#cb140-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_popularity)) <span class="op">+</span></span>
+<span id="cb140-3"><a href="data-visualization.html#cb140-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <p>The variable <code>release_year</code> is also continuous.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="data-visualization.html#cb147-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
-<span id="cb147-2"><a href="data-visualization.html#cb147-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year)) <span class="op">+</span></span>
-<span id="cb147-3"><a href="data-visualization.html#cb147-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-visualization.html#cb142-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb142-2"><a href="data-visualization.html#cb142-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year)) <span class="op">+</span></span>
+<span id="cb142-3"><a href="data-visualization.html#cb142-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 </div>
 <div id="two-numeric-variables" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> Two numeric variables</h3>
 <p>Two-dimensional plots have two axis, <code>x</code> (horizontal) and <code>y</code> (vertical).</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-visualization.html#cb149-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
-<span id="cb149-2"><a href="data-visualization.html#cb149-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
-<span id="cb149-3"><a href="data-visualization.html#cb149-3"></a>             <span class="dt">y =</span> track_popularity)) <span class="op">+</span></span>
-<span id="cb149-4"><a href="data-visualization.html#cb149-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-visualization.html#cb144-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb144-2"><a href="data-visualization.html#cb144-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb144-3"><a href="data-visualization.html#cb144-3"></a>             <span class="dt">y =</span> track_popularity)) <span class="op">+</span></span>
+<span id="cb144-4"><a href="data-visualization.html#cb144-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 </div>
 </div>
@@ -451,11 +449,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.5</span> geom_ (i.e., Geometric Objects)</h2>
 <p>Functions such as <code>geom_histogram()</code>, <code>geom_point()</code>, and <code>geom_col()</code> are geometric objects and determine what type of plot R draws.</p>
 <p>You can also map other elements of your chart in addition to position (i.e., <code>x</code> and <code>y</code>), such as color, size, and shape.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-visualization.html#cb150-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
-<span id="cb150-2"><a href="data-visualization.html#cb150-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
-<span id="cb150-3"><a href="data-visualization.html#cb150-3"></a>             <span class="dt">y =</span> track_popularity,</span>
-<span id="cb150-4"><a href="data-visualization.html#cb150-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
-<span id="cb150-5"><a href="data-visualization.html#cb150-5"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-visualization.html#cb145-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb145-2"><a href="data-visualization.html#cb145-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb145-3"><a href="data-visualization.html#cb145-3"></a>             <span class="dt">y =</span> track_popularity,</span>
+<span id="cb145-4"><a href="data-visualization.html#cb145-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb145-5"><a href="data-visualization.html#cb145-5"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <hr/>
 <p>EXERCISE</p>
@@ -466,19 +464,19 @@ Change <code>geom_point()</code> to the suggested variations in its help page.</
 <div id="more-mappings-with-aes" class="section level2">
 <h2><span class="header-section-number">8.6</span> More mappings with aes()</h2>
 <p>In addition to <code>color</code> you can also add <code>size</code> and <code>shape</code> to <code>aes()</code>.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="data-visualization.html#cb151-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
-<span id="cb151-2"><a href="data-visualization.html#cb151-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
-<span id="cb151-3"><a href="data-visualization.html#cb151-3"></a>             <span class="dt">y =</span> track_popularity,</span>
-<span id="cb151-4"><a href="data-visualization.html#cb151-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
-<span id="cb151-5"><a href="data-visualization.html#cb151-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
-<span id="cb151-6"><a href="data-visualization.html#cb151-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-visualization.html#cb146-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb146-2"><a href="data-visualization.html#cb146-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb146-3"><a href="data-visualization.html#cb146-3"></a>             <span class="dt">y =</span> track_popularity,</span>
+<span id="cb146-4"><a href="data-visualization.html#cb146-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
+<span id="cb146-5"><a href="data-visualization.html#cb146-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb146-6"><a href="data-visualization.html#cb146-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>The plot above is too messy, there’s too much information. You often need to transform your data before plotting it.</p>
 <hr/>
 <p>EXERCISE</p>
 <p>Summarize mean <code>track_popularity</code> by <code>release_year</code>, <code>playlist_genre</code> and <code>playlist_subgenre</code>.</p>
 <p>Your summarized data frame should look something like this:</p>
-<pre><code>## `summarise()` regrouping output by &#39;release_year&#39;, &#39;playlist_genre&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;release_year&#39;, &#39;playlist_genre&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 883 x 4
 ## # Groups:   release_year, playlist_genre [302]
 ##    release_year playlist_genre playlist_subgenre  mean_popularity
@@ -496,20 +494,20 @@ Change <code>geom_point()</code> to the suggested variations in its help page.</
 ## # … with 873 more rows</code></pre>
 <hr/>
 <p>Now you can plot your summarized data.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-visualization.html#cb154-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
-<span id="cb154-2"><a href="data-visualization.html#cb154-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
-<span id="cb154-3"><a href="data-visualization.html#cb154-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
-<span id="cb154-4"><a href="data-visualization.html#cb154-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
-<span id="cb154-5"><a href="data-visualization.html#cb154-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
-<span id="cb154-6"><a href="data-visualization.html#cb154-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-visualization.html#cb149-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb149-2"><a href="data-visualization.html#cb149-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb149-3"><a href="data-visualization.html#cb149-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb149-4"><a href="data-visualization.html#cb149-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
+<span id="cb149-5"><a href="data-visualization.html#cb149-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb149-6"><a href="data-visualization.html#cb149-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p>Still super messy. Shape is not really a good way to do this.</p>
 <p>Let’s try a bar plot.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-visualization.html#cb155-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
-<span id="cb155-2"><a href="data-visualization.html#cb155-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
-<span id="cb155-3"><a href="data-visualization.html#cb155-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
-<span id="cb155-4"><a href="data-visualization.html#cb155-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
-<span id="cb155-5"><a href="data-visualization.html#cb155-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-visualization.html#cb150-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb150-2"><a href="data-visualization.html#cb150-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb150-3"><a href="data-visualization.html#cb150-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb150-4"><a href="data-visualization.html#cb150-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb150-5"><a href="data-visualization.html#cb150-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) </span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <p>Not great either, too much going on.</p>
 </div>
@@ -517,20 +515,20 @@ Change <code>geom_point()</code> to the suggested variations in its help page.</
 <h2><span class="header-section-number">8.7</span> Facets</h2>
 <p>You can use the <code>facet_wrap()</code> function to split your plotting into several smaller plots, usually by a categorical variable.</p>
 <p>Let’s try the scatterplot first.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-visualization.html#cb156-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
-<span id="cb156-2"><a href="data-visualization.html#cb156-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
-<span id="cb156-3"><a href="data-visualization.html#cb156-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
-<span id="cb156-4"><a href="data-visualization.html#cb156-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
-<span id="cb156-5"><a href="data-visualization.html#cb156-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb156-6"><a href="data-visualization.html#cb156-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="data-visualization.html#cb151-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb151-2"><a href="data-visualization.html#cb151-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb151-3"><a href="data-visualization.html#cb151-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb151-4"><a href="data-visualization.html#cb151-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb151-5"><a href="data-visualization.html#cb151-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb151-6"><a href="data-visualization.html#cb151-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 <p>What about a bar plot?</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="data-visualization.html#cb157-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
-<span id="cb157-2"><a href="data-visualization.html#cb157-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
-<span id="cb157-3"><a href="data-visualization.html#cb157-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
-<span id="cb157-4"><a href="data-visualization.html#cb157-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
-<span id="cb157-5"><a href="data-visualization.html#cb157-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
-<span id="cb157-6"><a href="data-visualization.html#cb157-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-visualization.html#cb152-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb152-2"><a href="data-visualization.html#cb152-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb152-3"><a href="data-visualization.html#cb152-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb152-4"><a href="data-visualization.html#cb152-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb152-5"><a href="data-visualization.html#cb152-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb152-6"><a href="data-visualization.html#cb152-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 </div>
 <div id="more-summarize" class="section level2">
@@ -540,7 +538,6 @@ Change <code>geom_point()</code> to the suggested variations in its help page.</
 <p>EXERCISE</p>
 <p>Summarize mean <code>track_popularity</code> by <code>playlist_genre</code>.</p>
 <p>Your summarized data frame should look something like this:</p>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 6 x 2
 ##   playlist_genre mean_popularity
 ##   &lt;chr&gt;                    &lt;dbl&gt;

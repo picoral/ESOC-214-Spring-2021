@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
 <li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
 <li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
-<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-07"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 07</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="getting-data.html"><a href="getting-data.html#search-for-data-sets"><i class="fa fa-check"></i><b>12.1</b> Search for data sets</a></li>
@@ -342,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.1</span> Load libraries</h2>
 <p>Load tidyverse using <code>library()</code></p>
 <p>Our data for this module is an excel spreadsheet, so we need to install a new package to handle this type of data.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-wrangling.html#cb92-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-wrangling.html#cb89-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
 </div>
 <div id="read-your-data-in" class="section level2">
 <h2><span class="header-section-number">7.2</span> Read your data in</h2>
@@ -352,11 +350,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>check your working environment with <code>getwd()</code> and <code>dir()</code></p></li>
 <li><p>load your data</p></li>
 </ol>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="data-wrangling.html#cb93-1"></a>nfl_salary &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/nfl_salary.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-wrangling.html#cb90-1"></a>nfl_salary &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/nfl_salary.xlsx&quot;</span>)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>inspect your data with <code>summary()</code>, <code>glimpse()</code> and <code>View()</code></li>
 </ol>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-wrangling.html#cb94-1"></a><span class="kw">glimpse</span>(nfl_salary)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="data-wrangling.html#cb91-1"></a><span class="kw">glimpse</span>(nfl_salary)</span></code></pre></div>
 <pre><code>## Rows: 800
 ## Columns: 11
 ## $ year                &lt;dbl&gt; 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 20…
@@ -383,10 +381,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>What positions pay more and less?</p></li>
 </ol>
 <p>Let’s summarise the <code>mean</code> salary for Quarterback <code>by year</code>.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-wrangling.html#cb96-1"></a>nfl_salary <span class="op">%&gt;%</span></span>
-<span id="cb96-2"><a href="data-wrangling.html#cb96-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb96-3"><a href="data-wrangling.html#cb96-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">quarterback_mean_salary =</span> <span class="kw">mean</span>(Quarterback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="data-wrangling.html#cb93-1"></a>nfl_salary <span class="op">%&gt;%</span></span>
+<span id="cb93-2"><a href="data-wrangling.html#cb93-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
+<span id="cb93-3"><a href="data-wrangling.html#cb93-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">quarterback_mean_salary =</span> <span class="kw">mean</span>(Quarterback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 8 x 2
 ##    year quarterback_mean_salary
 ##   &lt;dbl&gt;                   &lt;dbl&gt;
@@ -399,11 +396,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 7  2017                5329727.
 ## 8  2018                6593769.</code></pre>
 <p>What would we do to add the mean salary for <code>Cornerback</code>?</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-wrangling.html#cb99-1"></a>nfl_salary <span class="op">%&gt;%</span></span>
-<span id="cb99-2"><a href="data-wrangling.html#cb99-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb99-3"><a href="data-wrangling.html#cb99-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">quarterback_mean_salary =</span> <span class="kw">mean</span>(Quarterback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb99-4"><a href="data-wrangling.html#cb99-4"></a>            <span class="dt">cornerback_mean_salary =</span> <span class="kw">mean</span>(Cornerback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-wrangling.html#cb95-1"></a>nfl_salary <span class="op">%&gt;%</span></span>
+<span id="cb95-2"><a href="data-wrangling.html#cb95-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
+<span id="cb95-3"><a href="data-wrangling.html#cb95-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">quarterback_mean_salary =</span> <span class="kw">mean</span>(Quarterback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb95-4"><a href="data-wrangling.html#cb95-4"></a>            <span class="dt">cornerback_mean_salary =</span> <span class="kw">mean</span>(Cornerback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 8 x 3
 ##    year quarterback_mean_salary cornerback_mean_salary
 ##   &lt;dbl&gt;                   &lt;dbl&gt;                  &lt;dbl&gt;
@@ -425,20 +421,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidy-data" class="section level2">
 <h2><span class="header-section-number">7.4</span> Tidy data</h2>
 <p>In order to make our data easier to work with, we need to make sure each column in our data represents just one variable. To do that for our <code>nfl_salary</code> dataframe, we need to pivot it.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-wrangling.html#cb102-1"></a>nfl_salary_tidy &lt;-<span class="st"> </span>nfl_salary <span class="op">%&gt;%</span></span>
-<span id="cb102-2"><a href="data-wrangling.html#cb102-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span>year,</span>
-<span id="cb102-3"><a href="data-wrangling.html#cb102-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;position&quot;</span>,</span>
-<span id="cb102-4"><a href="data-wrangling.html#cb102-4"></a>               <span class="dt">values_to =</span> <span class="st">&quot;salary&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="data-wrangling.html#cb97-1"></a>nfl_salary_tidy &lt;-<span class="st"> </span>nfl_salary <span class="op">%&gt;%</span></span>
+<span id="cb97-2"><a href="data-wrangling.html#cb97-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span>year,</span>
+<span id="cb97-3"><a href="data-wrangling.html#cb97-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;position&quot;</span>,</span>
+<span id="cb97-4"><a href="data-wrangling.html#cb97-4"></a>               <span class="dt">values_to =</span> <span class="st">&quot;salary&quot;</span>)</span></code></pre></div>
 <p>Always inspect your new data frame.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-wrangling.html#cb103-1"></a><span class="kw">glimpse</span>(nfl_salary_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-wrangling.html#cb98-1"></a><span class="kw">glimpse</span>(nfl_salary_tidy)</span></code></pre></div>
 <pre><code>## Rows: 8,000
 ## Columns: 3
 ## $ year     &lt;dbl&gt; 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2…
 ## $ position &lt;chr&gt; &quot;Cornerback&quot;, &quot;Defensive Lineman&quot;, &quot;Linebacker&quot;, &quot;Offensive L…
 ## $ salary   &lt;dbl&gt; 11265916, 17818000, 16420000, 15960000, 17228125, 12955000, 8…</code></pre>
 <p>How many positions are there in the data? We can now do a <code>count()</code> with our categorical variable for <code>position</code></p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="data-wrangling.html#cb105-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
-<span id="cb105-2"><a href="data-wrangling.html#cb105-2"></a><span class="st">  </span><span class="kw">count</span>(position)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-wrangling.html#cb100-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb100-2"><a href="data-wrangling.html#cb100-2"></a><span class="st">  </span><span class="kw">count</span>(position)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    position              n
 ##    &lt;chr&gt;             &lt;int&gt;
@@ -453,8 +449,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Tight End           800
 ## 10 Wide Receiver       800</code></pre>
 <p>We can add <code>year</code> to our <code>group_by</code> to check how many observations per <code>position</code> across <code>year</code></p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="data-wrangling.html#cb107-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
-<span id="cb107-2"><a href="data-wrangling.html#cb107-2"></a><span class="st">  </span><span class="kw">count</span>(position, year)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-wrangling.html#cb102-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb102-2"><a href="data-wrangling.html#cb102-2"></a><span class="st">  </span><span class="kw">count</span>(position, year)</span></code></pre></div>
 <pre><code>## # A tibble: 80 x 3
 ##    position           year     n
 ##    &lt;chr&gt;             &lt;dbl&gt; &lt;int&gt;
@@ -470,9 +466,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Defensive Lineman  2012   100
 ## # … with 70 more rows</code></pre>
 <p>Let’s check for NAs (i.e., missing data), we can do that by using <code>is.na()</code> and <code>filter()</code>.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-wrangling.html#cb109-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
-<span id="cb109-2"><a href="data-wrangling.html#cb109-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb109-3"><a href="data-wrangling.html#cb109-3"></a><span class="st">  </span><span class="kw">count</span>(position, year)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-wrangling.html#cb104-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb104-2"><a href="data-wrangling.html#cb104-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb104-3"><a href="data-wrangling.html#cb104-3"></a><span class="st">  </span><span class="kw">count</span>(position, year)</span></code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ##   position        year     n
 ##   &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt;
@@ -486,20 +482,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8 Quarterback     2018    11
 ## 9 Special Teamer  2011     1</code></pre>
 <p>We can remove these rows from our data frame.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-wrangling.html#cb111-1"></a>nfl_salary_tidy_clean &lt;-<span class="st"> </span>nfl_salary_tidy <span class="op">%&gt;%</span></span>
-<span id="cb111-2"><a href="data-wrangling.html#cb111-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(salary))</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="data-wrangling.html#cb106-1"></a>nfl_salary_tidy_clean &lt;-<span class="st"> </span>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb106-2"><a href="data-wrangling.html#cb106-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(salary))</span></code></pre></div>
 <p>Inspect your new data frame.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-wrangling.html#cb112-1"></a><span class="kw">glimpse</span>(nfl_salary_tidy_clean)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="data-wrangling.html#cb107-1"></a><span class="kw">glimpse</span>(nfl_salary_tidy_clean)</span></code></pre></div>
 <pre><code>## Rows: 7,944
 ## Columns: 3
 ## $ year     &lt;dbl&gt; 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2…
 ## $ position &lt;chr&gt; &quot;Cornerback&quot;, &quot;Defensive Lineman&quot;, &quot;Linebacker&quot;, &quot;Offensive L…
 ## $ salary   &lt;dbl&gt; 11265916, 17818000, 16420000, 15960000, 17228125, 12955000, 8…</code></pre>
 <p>Now we can do our salary <code>summarise()</code> in a cleaner way. We are going to do a <code>mean()</code> of our numeric variable <code>salary</code> by <code>year</code> AND <code>position</code>.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="data-wrangling.html#cb114-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb114-2"><a href="data-wrangling.html#cb114-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
-<span id="cb114-3"><a href="data-wrangling.html#cb114-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-wrangling.html#cb109-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb109-2"><a href="data-wrangling.html#cb109-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
+<span id="cb109-3"><a href="data-wrangling.html#cb109-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 3
 ## # Groups:   year [8]
 ##     year position          mean_salary
@@ -516,11 +512,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10  2011 Wide Receiver        2996590.
 ## # … with 70 more rows</code></pre>
 <p>We can do the group_by both ways (first <code>year</code> and then <code>position</code> or vice-versa).</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-wrangling.html#cb117-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb117-2"><a href="data-wrangling.html#cb117-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
-<span id="cb117-3"><a href="data-wrangling.html#cb117-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb117-4"><a href="data-wrangling.html#cb117-4"></a><span class="st">  </span><span class="kw">arrange</span>(mean_salary)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;position&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-wrangling.html#cb112-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb112-2"><a href="data-wrangling.html#cb112-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
+<span id="cb112-3"><a href="data-wrangling.html#cb112-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb112-4"><a href="data-wrangling.html#cb112-4"></a><span class="st">  </span><span class="kw">arrange</span>(mean_salary)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;position&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 3
 ## # Groups:   position [10]
 ##    position        year mean_salary
@@ -537,11 +533,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Tight End       2012    1664520.
 ## # … with 70 more rows</code></pre>
 <p>Add a <code>-</code> (minus) sign to the argument in <code>arrange()</code> to arrange your results by decreasing order of mean_salary.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-wrangling.html#cb120-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb120-2"><a href="data-wrangling.html#cb120-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
-<span id="cb120-3"><a href="data-wrangling.html#cb120-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb120-4"><a href="data-wrangling.html#cb120-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>mean_salary)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;position&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-wrangling.html#cb115-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb115-2"><a href="data-wrangling.html#cb115-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
+<span id="cb115-3"><a href="data-wrangling.html#cb115-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb115-4"><a href="data-wrangling.html#cb115-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>mean_salary)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;position&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 3
 ## # Groups:   position [10]
 ##    position           year mean_salary
@@ -558,11 +554,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Linebacker         2018    5293675.
 ## # … with 70 more rows</code></pre>
 <p>We can also add <code>arrange()</code> to our code block.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-wrangling.html#cb123-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb123-2"><a href="data-wrangling.html#cb123-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
-<span id="cb123-3"><a href="data-wrangling.html#cb123-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb123-4"><a href="data-wrangling.html#cb123-4"></a><span class="st">  </span><span class="kw">arrange</span>()</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;position&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-wrangling.html#cb118-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb118-2"><a href="data-wrangling.html#cb118-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
+<span id="cb118-3"><a href="data-wrangling.html#cb118-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb118-4"><a href="data-wrangling.html#cb118-4"></a><span class="st">  </span><span class="kw">arrange</span>()</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;position&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 3
 ## # Groups:   position [10]
 ##    position           year mean_salary
@@ -582,18 +578,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.4.1</span> Viz Demo</h3>
 <p>We can also visualize our data using <code>ggplot()</code>.</p>
 <p>First we save our summary results in a new dataframe called <code>nfl_salary_summary</code>.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-wrangling.html#cb126-1"></a>nfl_salary_summary &lt;-<span class="st"> </span>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb126-2"><a href="data-wrangling.html#cb126-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
-<span id="cb126-3"><a href="data-wrangling.html#cb126-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb126-4"><a href="data-wrangling.html#cb126-4"></a><span class="st">  </span><span class="kw">arrange</span>()</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;position&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-wrangling.html#cb121-1"></a>nfl_salary_summary &lt;-<span class="st"> </span>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb121-2"><a href="data-wrangling.html#cb121-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
+<span id="cb121-3"><a href="data-wrangling.html#cb121-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb121-4"><a href="data-wrangling.html#cb121-4"></a><span class="st">  </span><span class="kw">arrange</span>()</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;position&#39;. You can override using the `.groups` argument.</code></pre>
 <p>Then we plot it.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-wrangling.html#cb128-1"></a>nfl_salary_summary <span class="op">%&gt;%</span></span>
-<span id="cb128-2"><a href="data-wrangling.html#cb128-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> mean_salary,</span>
-<span id="cb128-3"><a href="data-wrangling.html#cb128-3"></a>             <span class="dt">color =</span> position,</span>
-<span id="cb128-4"><a href="data-wrangling.html#cb128-4"></a>             <span class="dt">group =</span> position)) <span class="op">+</span></span>
-<span id="cb128-5"><a href="data-wrangling.html#cb128-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb128-6"><a href="data-wrangling.html#cb128-6"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-wrangling.html#cb123-1"></a>nfl_salary_summary <span class="op">%&gt;%</span></span>
+<span id="cb123-2"><a href="data-wrangling.html#cb123-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> mean_salary,</span>
+<span id="cb123-3"><a href="data-wrangling.html#cb123-3"></a>             <span class="dt">color =</span> position,</span>
+<span id="cb123-4"><a href="data-wrangling.html#cb123-4"></a>             <span class="dt">group =</span> position)) <span class="op">+</span></span>
+<span id="cb123-5"><a href="data-wrangling.html#cb123-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb123-6"><a href="data-wrangling.html#cb123-6"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
 </div>
@@ -602,11 +598,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now that our data is tidy, we can transform our data by adding new variables/columns to it.</p>
 <p>It seems some salaries for certain positions show a higher increase across the years than the salaries for other positions. In other words, the proportion of what position makes in relation to total money spent in salaries for each each.</p>
 <p>We can check this is true by creating a <code>sum()</code> of salaries for each year and a count of players using <code>n()</code>:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-wrangling.html#cb129-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb129-2"><a href="data-wrangling.html#cb129-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
-<span id="cb129-3"><a href="data-wrangling.html#cb129-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
-<span id="cb129-4"><a href="data-wrangling.html#cb129-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) </span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-wrangling.html#cb124-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb124-2"><a href="data-wrangling.html#cb124-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
+<span id="cb124-3"><a href="data-wrangling.html#cb124-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
+<span id="cb124-4"><a href="data-wrangling.html#cb124-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) </span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 4
 ## # Groups:   year [8]
 ##     year position          player_count total_per_position
@@ -623,12 +619,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10  2011 Wide Receiver              100          299659044
 ## # … with 70 more rows</code></pre>
 <p>We can then add <code>mutate()</code> to our code block to calculate <code>sum()</code> of all salaries per year.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-wrangling.html#cb132-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb132-2"><a href="data-wrangling.html#cb132-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
-<span id="cb132-3"><a href="data-wrangling.html#cb132-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
-<span id="cb132-4"><a href="data-wrangling.html#cb132-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb132-5"><a href="data-wrangling.html#cb132-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position)) </span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-wrangling.html#cb127-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb127-2"><a href="data-wrangling.html#cb127-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
+<span id="cb127-3"><a href="data-wrangling.html#cb127-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
+<span id="cb127-4"><a href="data-wrangling.html#cb127-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb127-5"><a href="data-wrangling.html#cb127-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position)) </span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 5
 ## # Groups:   year [8]
 ##     year position          player_count total_per_position total_per_year
@@ -645,13 +641,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10  2011 Wide Receiver              100          299659044     2935293531
 ## # … with 70 more rows</code></pre>
 <p>Now we can calculate the percentage cost of each position by the total salaries for each year, we can do that all in the same <code>mutate()</code>.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-wrangling.html#cb135-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb135-2"><a href="data-wrangling.html#cb135-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
-<span id="cb135-3"><a href="data-wrangling.html#cb135-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
-<span id="cb135-4"><a href="data-wrangling.html#cb135-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb135-5"><a href="data-wrangling.html#cb135-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position),</span>
-<span id="cb135-6"><a href="data-wrangling.html#cb135-6"></a>         <span class="dt">percentage_cost =</span> total_per_position<span class="op">/</span>total_per_year) </span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-wrangling.html#cb130-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb130-2"><a href="data-wrangling.html#cb130-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
+<span id="cb130-3"><a href="data-wrangling.html#cb130-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
+<span id="cb130-4"><a href="data-wrangling.html#cb130-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb130-5"><a href="data-wrangling.html#cb130-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position),</span>
+<span id="cb130-6"><a href="data-wrangling.html#cb130-6"></a>         <span class="dt">percentage_cost =</span> total_per_position<span class="op">/</span>total_per_year) </span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 6
 ## # Groups:   year [8]
 ##     year position   player_count total_per_posit… total_per_year percentage_cost
@@ -668,14 +664,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10  2011 Wide Rece…          100        299659044     2935293531          0.102 
 ## # … with 70 more rows</code></pre>
 <p>Add <code>arrange()</code> to see higher percentages at the top.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-wrangling.html#cb138-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb138-2"><a href="data-wrangling.html#cb138-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
-<span id="cb138-3"><a href="data-wrangling.html#cb138-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
-<span id="cb138-4"><a href="data-wrangling.html#cb138-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb138-5"><a href="data-wrangling.html#cb138-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position),</span>
-<span id="cb138-6"><a href="data-wrangling.html#cb138-6"></a>         <span class="dt">percentage_cost =</span> total_per_position<span class="op">/</span>total_per_year) <span class="op">%&gt;%</span></span>
-<span id="cb138-7"><a href="data-wrangling.html#cb138-7"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>percentage_cost)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-wrangling.html#cb133-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb133-2"><a href="data-wrangling.html#cb133-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
+<span id="cb133-3"><a href="data-wrangling.html#cb133-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
+<span id="cb133-4"><a href="data-wrangling.html#cb133-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb133-5"><a href="data-wrangling.html#cb133-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position),</span>
+<span id="cb133-6"><a href="data-wrangling.html#cb133-6"></a>         <span class="dt">percentage_cost =</span> total_per_position<span class="op">/</span>total_per_year) <span class="op">%&gt;%</span></span>
+<span id="cb133-7"><a href="data-wrangling.html#cb133-7"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>percentage_cost)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 80 x 6
 ## # Groups:   year [8]
 ##     year position   player_count total_per_posit… total_per_year percentage_cost
@@ -695,21 +691,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.5.1</span> Viz Demo</h3>
 <p>We can also visualize our data using <code>ggplot()</code>.</p>
 <p>First we save our summary results in a new dataframe called <code>nfl_salary_summary</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-wrangling.html#cb141-1"></a>nfl_salary_summary &lt;-<span class="st"> </span>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
-<span id="cb141-2"><a href="data-wrangling.html#cb141-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
-<span id="cb141-3"><a href="data-wrangling.html#cb141-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
-<span id="cb141-4"><a href="data-wrangling.html#cb141-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
-<span id="cb141-5"><a href="data-wrangling.html#cb141-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position),</span>
-<span id="cb141-6"><a href="data-wrangling.html#cb141-6"></a>         <span class="dt">percentage_cost =</span> total_per_position<span class="op">/</span>total_per_year) <span class="op">%&gt;%</span></span>
-<span id="cb141-7"><a href="data-wrangling.html#cb141-7"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>percentage_cost)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-wrangling.html#cb136-1"></a>nfl_salary_summary &lt;-<span class="st"> </span>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb136-2"><a href="data-wrangling.html#cb136-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
+<span id="cb136-3"><a href="data-wrangling.html#cb136-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">player_count =</span> <span class="kw">n</span>(),</span>
+<span id="cb136-4"><a href="data-wrangling.html#cb136-4"></a>            <span class="dt">total_per_position =</span> <span class="kw">sum</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb136-5"><a href="data-wrangling.html#cb136-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_per_year =</span> <span class="kw">sum</span>(total_per_position),</span>
+<span id="cb136-6"><a href="data-wrangling.html#cb136-6"></a>         <span class="dt">percentage_cost =</span> total_per_position<span class="op">/</span>total_per_year) <span class="op">%&gt;%</span></span>
+<span id="cb136-7"><a href="data-wrangling.html#cb136-7"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>percentage_cost)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
 <p>Then we plot it.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-wrangling.html#cb143-1"></a>nfl_salary_summary <span class="op">%&gt;%</span></span>
-<span id="cb143-2"><a href="data-wrangling.html#cb143-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> percentage_cost,</span>
-<span id="cb143-3"><a href="data-wrangling.html#cb143-3"></a>             <span class="dt">color =</span> position,</span>
-<span id="cb143-4"><a href="data-wrangling.html#cb143-4"></a>             <span class="dt">group =</span> position)) <span class="op">+</span></span>
-<span id="cb143-5"><a href="data-wrangling.html#cb143-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb143-6"><a href="data-wrangling.html#cb143-6"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-wrangling.html#cb138-1"></a>nfl_salary_summary <span class="op">%&gt;%</span></span>
+<span id="cb138-2"><a href="data-wrangling.html#cb138-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> percentage_cost,</span>
+<span id="cb138-3"><a href="data-wrangling.html#cb138-3"></a>             <span class="dt">color =</span> position,</span>
+<span id="cb138-4"><a href="data-wrangling.html#cb138-4"></a>             <span class="dt">group =</span> position)) <span class="op">+</span></span>
+<span id="cb138-5"><a href="data-wrangling.html#cb138-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb138-6"><a href="data-wrangling.html#cb138-6"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
 </div>

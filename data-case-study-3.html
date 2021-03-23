@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
 <li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
 <li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
-<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-07"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 07</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="getting-data.html"><a href="getting-data.html#search-for-data-sets"><i class="fa fa-check"></i><b>12.1</b> Search for data sets</a></li>
@@ -339,9 +337,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Module 13</span> Data Case Study 3</h1>
 <p>For this case study, we will work with the Great American Beer Festival data set, provided as a <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-10-20/readme.md">tidy tuesday</a> data set.</p>
 <p>As usual, we first load the libraries we are going to use.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="data-case-study-3.html#cb321-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="data-case-study-3.html#cb304-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>Then we load the data.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="data-case-study-3.html#cb322-1"></a>beer_awards &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="data-case-study-3.html#cb305-1"></a>beer_awards &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   medal = col_character(),
@@ -357,9 +355,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">13.1</span> Adding population info to data frame</h2>
 <p>Whenever you’re dealing with states or countries, it’s usually relevant to know the population of the different states/countries. For beer awards, we can assume that the higher the population of a state, the higher the number of breweries, thus the higher the number of awards. Let’s check if this assumption is correct. First, we need to retrieve information about US states’ population numbers. The <code>usmap</code> package has a <code>statepop</code> data set with that info.</p>
 <p>First, we need to install <code>usmap</code> and called it with <code>library()</code>.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="data-case-study-3.html#cb324-1"></a><span class="kw">library</span>(usmap)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="data-case-study-3.html#cb307-1"></a><span class="kw">library</span>(usmap)</span></code></pre></div>
 <p>We can now inspect the <code>statepop</code> data frame.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="data-case-study-3.html#cb325-1"></a><span class="kw">glimpse</span>(statepop)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="data-case-study-3.html#cb308-1"></a><span class="kw">glimpse</span>(statepop)</span></code></pre></div>
 <pre><code>## Rows: 51
 ## Columns: 4
 ## $ fips     &lt;chr&gt; &quot;01&quot;, &quot;02&quot;, &quot;04&quot;, &quot;05&quot;, &quot;06&quot;, &quot;08&quot;, &quot;09&quot;, &quot;10&quot;, &quot;11&quot;, &quot;12&quot;, &quot;…
@@ -367,12 +365,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ full     &lt;chr&gt; &quot;Alabama&quot;, &quot;Alaska&quot;, &quot;Arizona&quot;, &quot;Arkansas&quot;, &quot;California&quot;, &quot;Co…
 ## $ pop_2015 &lt;dbl&gt; 4858979, 738432, 6828065, 2978204, 39144818, 5456574, 3590886…</code></pre>
 <p>We just need the <code>abbr</code> and <code>pop_2015</code> columns, but we have to make sure that the state abbreviation column name matches what we have for our <code>beer_awards</code> data.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="data-case-study-3.html#cb327-1"></a>us_pop &lt;-<span class="st"> </span>statepop <span class="op">%&gt;%</span></span>
-<span id="cb327-2"><a href="data-case-study-3.html#cb327-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">&quot;state&quot;</span> =<span class="st"> </span>abbr,</span>
-<span id="cb327-3"><a href="data-case-study-3.html#cb327-3"></a>         pop_<span class="dv">2015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="data-case-study-3.html#cb310-1"></a>us_pop &lt;-<span class="st"> </span>statepop <span class="op">%&gt;%</span></span>
+<span id="cb310-2"><a href="data-case-study-3.html#cb310-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">&quot;state&quot;</span> =<span class="st"> </span>abbr,</span>
+<span id="cb310-3"><a href="data-case-study-3.html#cb310-3"></a>         pop_<span class="dv">2015</span>)</span></code></pre></div>
 <p>We are interested in number of beer awards per state, to check whether it correlates with the population size. We need to summarise our <code>beer_awards</code> data to get number of awards per state.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="data-case-study-3.html#cb328-1"></a>beer_awards <span class="op">%&gt;%</span></span>
-<span id="cb328-2"><a href="data-case-study-3.html#cb328-2"></a><span class="st">  </span><span class="kw">count</span>(state)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="data-case-study-3.html#cb311-1"></a>beer_awards <span class="op">%&gt;%</span></span>
+<span id="cb311-2"><a href="data-case-study-3.html#cb311-2"></a><span class="st">  </span><span class="kw">count</span>(state)</span></code></pre></div>
 <pre><code>## # A tibble: 52 x 2
 ##    state     n
 ##    &lt;chr&gt; &lt;int&gt;
@@ -388,63 +386,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 DE       43
 ## # … with 42 more rows</code></pre>
 <p>There are at least two Alaska state codes (Ak and AK). We need to standardize the codes, to upper case, for this count to work correctly. Let’s fix that in our original data, so we don’t run into this problem again.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="data-case-study-3.html#cb330-1"></a>beer_awards &lt;-<span class="st"> </span>beer_awards <span class="op">%&gt;%</span></span>
-<span id="cb330-2"><a href="data-case-study-3.html#cb330-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">state =</span> <span class="kw">toupper</span>(state))</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="data-case-study-3.html#cb313-1"></a>beer_awards &lt;-<span class="st"> </span>beer_awards <span class="op">%&gt;%</span></span>
+<span id="cb313-2"><a href="data-case-study-3.html#cb313-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">state =</span> <span class="kw">toupper</span>(state))</span></code></pre></div>
 <p>Now we can count number of awards per state.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="data-case-study-3.html#cb331-1"></a>award_count_per_state &lt;-<span class="st"> </span>beer_awards <span class="op">%&gt;%</span></span>
-<span id="cb331-2"><a href="data-case-study-3.html#cb331-2"></a><span class="st">  </span><span class="kw">count</span>(state)</span>
-<span id="cb331-3"><a href="data-case-study-3.html#cb331-3"></a></span>
-<span id="cb331-4"><a href="data-case-study-3.html#cb331-4"></a><span class="co"># inspect data</span></span>
-<span id="cb331-5"><a href="data-case-study-3.html#cb331-5"></a><span class="kw">glimpse</span>(award_count_per_state)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="data-case-study-3.html#cb314-1"></a>award_count_per_state &lt;-<span class="st"> </span>beer_awards <span class="op">%&gt;%</span></span>
+<span id="cb314-2"><a href="data-case-study-3.html#cb314-2"></a><span class="st">  </span><span class="kw">count</span>(state)</span>
+<span id="cb314-3"><a href="data-case-study-3.html#cb314-3"></a></span>
+<span id="cb314-4"><a href="data-case-study-3.html#cb314-4"></a><span class="co"># inspect data</span></span>
+<span id="cb314-5"><a href="data-case-study-3.html#cb314-5"></a><span class="kw">glimpse</span>(award_count_per_state)</span></code></pre></div>
 <pre><code>## Rows: 50
 ## Columns: 2
 ## $ state &lt;chr&gt; &quot;AK&quot;, &quot;AL&quot;, &quot;AR&quot;, &quot;AZ&quot;, &quot;CA&quot;, &quot;CO&quot;, &quot;CT&quot;, &quot;DC&quot;, &quot;DE&quot;, &quot;FL&quot;, &quot;GA&quot;…
 ## $ n     &lt;int&gt; 63, 6, 5, 92, 962, 659, 16, 4, 43, 62, 38, 17, 28, 22, 155, 76, …</code></pre>
 <p>We now can add population info from our <code>us_pop</code> data frame to our <code>award_count_per_state</code> data.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="data-case-study-3.html#cb333-1"></a>award_count_per_state &lt;-<span class="st"> </span><span class="kw">left_join</span>(award_count_per_state, us_pop)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="data-case-study-3.html#cb316-1"></a>award_count_per_state &lt;-<span class="st"> </span><span class="kw">left_join</span>(award_count_per_state, us_pop)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;state&quot;</code></pre>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="data-case-study-3.html#cb335-1"></a><span class="co"># inspect data</span></span>
-<span id="cb335-2"><a href="data-case-study-3.html#cb335-2"></a><span class="kw">glimpse</span>(award_count_per_state)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="data-case-study-3.html#cb318-1"></a><span class="co"># inspect data</span></span>
+<span id="cb318-2"><a href="data-case-study-3.html#cb318-2"></a><span class="kw">glimpse</span>(award_count_per_state)</span></code></pre></div>
 <pre><code>## Rows: 50
 ## Columns: 3
 ## $ state    &lt;chr&gt; &quot;AK&quot;, &quot;AL&quot;, &quot;AR&quot;, &quot;AZ&quot;, &quot;CA&quot;, &quot;CO&quot;, &quot;CT&quot;, &quot;DC&quot;, &quot;DE&quot;, &quot;FL&quot;, &quot;…
 ## $ n        &lt;int&gt; 63, 6, 5, 92, 962, 659, 16, 4, 43, 62, 38, 17, 28, 22, 155, 7…
 ## $ pop_2015 &lt;dbl&gt; 738432, 4858979, 2978204, 6828065, 39144818, 5456574, 3590886…</code></pre>
 <p>Finally, we draw a scatter plot of award count (<code>n</code>) by population size (<code>pop_2015</code>).</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="data-case-study-3.html#cb337-1"></a>award_count_per_state <span class="op">%&gt;%</span></span>
-<span id="cb337-2"><a href="data-case-study-3.html#cb337-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> pop_<span class="dv">2015</span>, <span class="dt">y =</span> n)) <span class="op">+</span></span>
-<span id="cb337-3"><a href="data-case-study-3.html#cb337-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="data-case-study-3.html#cb320-1"></a>award_count_per_state <span class="op">%&gt;%</span></span>
+<span id="cb320-2"><a href="data-case-study-3.html#cb320-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> pop_<span class="dv">2015</span>, <span class="dt">y =</span> n)) <span class="op">+</span></span>
+<span id="cb320-3"><a href="data-case-study-3.html#cb320-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 </div>
 <div id="plotting-a-map" class="section level2">
 <h2><span class="header-section-number">13.2</span> Plotting a map</h2>
 <p>Whenever you have data with locations, like US states, you can think about plotting data to a geographical map. For the US, that’s made extra easy with the <code>usmap</code> package.</p>
 <p>We can now plot a map, using the <code>plot_usmpa</code> function.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="data-case-study-3.html#cb338-1"></a>beer_awards <span class="op">%&gt;%</span></span>
-<span id="cb338-2"><a href="data-case-study-3.html#cb338-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
-<span id="cb338-3"><a href="data-case-study-3.html#cb338-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="data-case-study-3.html#cb321-1"></a>beer_awards <span class="op">%&gt;%</span></span>
+<span id="cb321-2"><a href="data-case-study-3.html#cb321-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
+<span id="cb321-3"><a href="data-case-study-3.html#cb321-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>Let’s make it look nicer by moving the legend right.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="data-case-study-3.html#cb339-1"></a>beer_awards <span class="op">%&gt;%</span></span>
-<span id="cb339-2"><a href="data-case-study-3.html#cb339-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
-<span id="cb339-3"><a href="data-case-study-3.html#cb339-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>) <span class="op">+</span></span>
-<span id="cb339-4"><a href="data-case-study-3.html#cb339-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="data-case-study-3.html#cb322-1"></a>beer_awards <span class="op">%&gt;%</span></span>
+<span id="cb322-2"><a href="data-case-study-3.html#cb322-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
+<span id="cb322-3"><a href="data-case-study-3.html#cb322-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>) <span class="op">+</span></span>
+<span id="cb322-4"><a href="data-case-study-3.html#cb322-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <p>We can also change the title of the legend.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="data-case-study-3.html#cb340-1"></a>beer_awards <span class="op">%&gt;%</span></span>
-<span id="cb340-2"><a href="data-case-study-3.html#cb340-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
-<span id="cb340-3"><a href="data-case-study-3.html#cb340-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>) <span class="op">+</span></span>
-<span id="cb340-4"><a href="data-case-study-3.html#cb340-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span></span>
-<span id="cb340-5"><a href="data-case-study-3.html#cb340-5"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Award Count&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="data-case-study-3.html#cb323-1"></a>beer_awards <span class="op">%&gt;%</span></span>
+<span id="cb323-2"><a href="data-case-study-3.html#cb323-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
+<span id="cb323-3"><a href="data-case-study-3.html#cb323-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>) <span class="op">+</span></span>
+<span id="cb323-4"><a href="data-case-study-3.html#cb323-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span></span>
+<span id="cb323-5"><a href="data-case-study-3.html#cb323-5"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Award Count&quot;</span>)</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <p>People usually associate darker colors with higher density or higher values. Let’s change the colors to define a light color for our <code>low</code> values and a dark color for our <code>high</code> values. Check this documentation for <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">color names in R</a>.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="data-case-study-3.html#cb341-1"></a>beer_awards <span class="op">%&gt;%</span></span>
-<span id="cb341-2"><a href="data-case-study-3.html#cb341-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
-<span id="cb341-3"><a href="data-case-study-3.html#cb341-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>) <span class="op">+</span></span>
-<span id="cb341-4"><a href="data-case-study-3.html#cb341-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span></span>
-<span id="cb341-5"><a href="data-case-study-3.html#cb341-5"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Award Count&quot;</span>,</span>
-<span id="cb341-6"><a href="data-case-study-3.html#cb341-6"></a>                        <span class="dt">low =</span> <span class="st">&quot;darkgoldenrod2&quot;</span>, </span>
-<span id="cb341-7"><a href="data-case-study-3.html#cb341-7"></a>                        <span class="dt">high =</span> <span class="st">&quot;darkgoldenrod4&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="data-case-study-3.html#cb324-1"></a>beer_awards <span class="op">%&gt;%</span></span>
+<span id="cb324-2"><a href="data-case-study-3.html#cb324-2"></a><span class="st">  </span><span class="kw">count</span>(state, medal) <span class="op">%&gt;%</span></span>
+<span id="cb324-3"><a href="data-case-study-3.html#cb324-3"></a><span class="st">  </span><span class="kw">plot_usmap</span>(<span class="dt">data =</span> ., <span class="dt">values =</span> <span class="st">&quot;n&quot;</span>) <span class="op">+</span></span>
+<span id="cb324-4"><a href="data-case-study-3.html#cb324-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span></span>
+<span id="cb324-5"><a href="data-case-study-3.html#cb324-5"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Award Count&quot;</span>,</span>
+<span id="cb324-6"><a href="data-case-study-3.html#cb324-6"></a>                        <span class="dt">low =</span> <span class="st">&quot;darkgoldenrod2&quot;</span>, </span>
+<span id="cb324-7"><a href="data-case-study-3.html#cb324-7"></a>                        <span class="dt">high =</span> <span class="st">&quot;darkgoldenrod4&quot;</span>)</span></code></pre></div>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 </div>
 <div id="data-challenge-08" class="section level2">

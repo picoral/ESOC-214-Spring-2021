@@ -120,7 +120,7 @@ cleaning-up-column-names
 manipulating-dates
 extra-data-libraries
 exploring-data
-data-challenge-07
+data-challenge-06
 getting-data
 search-for-data-sets
 extracting-data-tables-from-pdf-files
