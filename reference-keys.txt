@@ -1,6 +1,6 @@
 fig:unnamed-chunk-3
-tab:unnamed-chunk-192
-tab:unnamed-chunk-194
+tab:unnamed-chunk-178
+tab:unnamed-chunk-180
 syllabus
 course-description
 course-objectives
@@ -123,7 +123,6 @@ exploring-data
 data-challenge-06
 getting-data
 search-for-data-sets
-extracting-data-tables-from-pdf-files
 extracting-data-tables-from-websites
 project-proposal
 data-case-study-3

@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Spring 2021}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2021-03-23}
+\date{2021-03-25}
 
 \begin{document}
 \maketitle
@@ -4966,1185 +4966,6 @@ There are number of websites that are repositories of data sets. Here's a list o
   City of Tucson Open Data \url{https://gisdata.tucsonaz.gov/}
 \end{itemize}
 
-\hypertarget{extracting-data-tables-from-pdf-files}{%
-\section{Extracting data tables from pdf files}\label{extracting-data-tables-from-pdf-files}}
-
-Many times you won't have access to an actual data file. Many institutions make data available in pdf format. Lucky for us, there's an R package to extract tables from pdf files.
-
-As usual, we need to install the package first.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tabulizer"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Remember we need to install a package only once (and updated it once in a while), but every time we want to use it, we need to call it with the \texttt{library()} function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tabulizer)}
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(janitor)}
-\end{Highlighting}
-\end{Shaded}
-
-Let's look at UArizona's \href{https://uair.arizona.edu/CommonDataSet}{Common Data Set} website.
-
-For this lesson we will focus on the \href{https://uair.arizona.edu/sites/default/files/2019-2020\%20CDS_FINAL_060820.pdf}{Common Data Set 2019-2020}
-
-First we need to run the \texttt{extract\_tables()} function.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ua_common_dataset <-}\StringTok{ }\KeywordTok{extract_tables}\NormalTok{(}\StringTok{"https://uair.arizona.edu/sites/default/files/2019-2020%20CDS_FINAL_060820.pdf"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-The \texttt{extract\_tables()} function returns a list with all tables that it was able to extract from the pdf file given.
-
-Let's take a look at the seventh table in the list.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ua_common_dataset[[}\DecValTok{9}\NormalTok{]]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##       [,1] [,2]                              [,3]   
-##  [1,] "B3" "Certificate/diploma"             "1 28" 
-##  [2,] "B3" "Associate degrees"               "-"    
-##  [3,] "B3" "Bachelor's degrees"              "7,754"
-##  [4,] "B3" "Postbachelor's certificates"     "172"  
-##  [5,] "B3" "Master's degrees"                "2,100"
-##  [6,] "B3" "Post-Master's certificates"      "9"    
-##  [7,] "B3" "Doctoral degrees –"              "448"  
-##  [8,] ""   "research/scholarship"            ""     
-##  [9,] "B3" "Doctoral degrees – professional" "533"  
-## [10,] ""   "practice"                        ""     
-## [11,] "B3" "Doctoral degrees – other"        "-"
-\end{verbatim}
-
-It's pretty messy. We can start by converting it to an actual data frame.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{enrollment_data <-}\StringTok{ }\NormalTok{ua_common_dataset[[}\DecValTok{9}\NormalTok{]] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{as.data.frame}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{clean_names}\NormalTok{()}
-
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    v1                              v2    v3
-## 1  B3             Certificate/diploma  1 28
-## 2  B3               Associate degrees     -
-## 3  B3              Bachelor's degrees 7,754
-## 4  B3     Postbachelor's certificates   172
-## 5  B3                Master's degrees 2,100
-## 6  B3      Post-Master's certificates     9
-## 7  B3              Doctoral degrees –   448
-## 8                research/scholarship      
-## 9  B3 Doctoral degrees – professional   533
-## 10                           practice      
-## 11 B3        Doctoral degrees – other     -
-\end{verbatim}
-
-We don't need the first column
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{enrollment_data <-}\StringTok{ }\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{v1)}
-
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                 v2    v3
-## 1              Certificate/diploma  1 28
-## 2                Associate degrees     -
-## 3               Bachelor's degrees 7,754
-## 4      Postbachelor's certificates   172
-## 5                 Master's degrees 2,100
-## 6       Post-Master's certificates     9
-## 7               Doctoral degrees –   448
-## 8             research/scholarship      
-## 9  Doctoral degrees – professional   533
-## 10                        practice      
-## 11        Doctoral degrees – other     -
-\end{verbatim}
-
-We can manually change the column names.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{colnames}\NormalTok{(enrollment_data) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "v2" "v3"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{colnames}\NormalTok{(enrollment_data) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"type"}\NormalTok{, }
-                               \StringTok{"count"}\NormalTok{)}
-
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                               type count
-## 1              Certificate/diploma  1 28
-## 2                Associate degrees     -
-## 3               Bachelor's degrees 7,754
-## 4      Postbachelor's certificates   172
-## 5                 Master's degrees 2,100
-## 6       Post-Master's certificates     9
-## 7               Doctoral degrees –   448
-## 8             research/scholarship      
-## 9  Doctoral degrees – professional   533
-## 10                        practice      
-## 11        Doctoral degrees – other     -
-\end{verbatim}
-
-We can now delete empty rows (which comes from line breaks in the table, you can fix these further if you think it's needed).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# remove empty rows}
-\NormalTok{enrollment_data <-}\StringTok{ }\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(count }\OperatorTok{!=}\StringTok{ ""}\NormalTok{)}
-
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                              type count
-## 1             Certificate/diploma  1 28
-## 2               Associate degrees     -
-## 3              Bachelor's degrees 7,754
-## 4     Postbachelor's certificates   172
-## 5                Master's degrees 2,100
-## 6      Post-Master's certificates     9
-## 7              Doctoral degrees –   448
-## 8 Doctoral degrees – professional   533
-## 9        Doctoral degrees – other     -
-\end{verbatim}
-
-We can replace \texttt{-} with zero.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# replace - with 0}
-\NormalTok{enrollment_data <-}\StringTok{ }\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{ifelse}\NormalTok{(count }\OperatorTok{==}\StringTok{ "-"}\NormalTok{,}
-                        \DecValTok{0}\NormalTok{, count))}
-
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                              type count
-## 1             Certificate/diploma  1 28
-## 2               Associate degrees     0
-## 3              Bachelor's degrees 7,754
-## 4     Postbachelor's certificates   172
-## 5                Master's degrees 2,100
-## 6      Post-Master's certificates     9
-## 7              Doctoral degrees –   448
-## 8 Doctoral degrees – professional   533
-## 9        Doctoral degrees – other     0
-\end{verbatim}
-
-Finally, we convert \texttt{count} to number.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# try parse_number}
-\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{parse_number}\NormalTok{(count))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                              type count
-## 1             Certificate/diploma     1
-## 2               Associate degrees     0
-## 3              Bachelor's degrees  7754
-## 4     Postbachelor's certificates   172
-## 5                Master's degrees  2100
-## 6      Post-Master's certificates     9
-## 7              Doctoral degrees –   448
-## 8 Doctoral degrees – professional   533
-## 9        Doctoral degrees – other     0
-\end{verbatim}
-
-Remove spaces between numbers.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# use gsub to remove spaces (i.e., replace \textbackslash{}\textbackslash{}s with nothing)}
-\NormalTok{enrollment_data <-}\StringTok{ }\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{gsub}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{s"}\NormalTok{, }\StringTok{""}\NormalTok{, count))}
-
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                              type count
-## 1             Certificate/diploma   128
-## 2               Associate degrees     0
-## 3              Bachelor's degrees 7,754
-## 4     Postbachelor's certificates   172
-## 5                Master's degrees 2,100
-## 6      Post-Master's certificates     9
-## 7              Doctoral degrees –   448
-## 8 Doctoral degrees – professional   533
-## 9        Doctoral degrees – other     0
-\end{verbatim}
-
-Try parse\_number again
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# try parse_number}
-\NormalTok{enrollment_data <-}\StringTok{ }\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{parse_number}\NormalTok{(count))}
-
-\CommentTok{# check data}
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                              type count
-## 1             Certificate/diploma   128
-## 2               Associate degrees     0
-## 3              Bachelor's degrees  7754
-## 4     Postbachelor's certificates   172
-## 5                Master's degrees  2100
-## 6      Post-Master's certificates     9
-## 7              Doctoral degrees –   448
-## 8 Doctoral degrees – professional   533
-## 9        Doctoral degrees – other     0
-\end{verbatim}
-
-We can add info about year, and then process all the other pdf files.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# try parse_number}
-\NormalTok{enrollment_data <-}\StringTok{ }\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2019}\NormalTok{)}
-
-\CommentTok{# check data}
-\NormalTok{enrollment_data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                              type count year
-## 1             Certificate/diploma   128 2019
-## 2               Associate degrees     0 2019
-## 3              Bachelor's degrees  7754 2019
-## 4     Postbachelor's certificates   172 2019
-## 5                Master's degrees  2100 2019
-## 6      Post-Master's certificates     9 2019
-## 7              Doctoral degrees –   448 2019
-## 8 Doctoral degrees – professional   533 2019
-## 9        Doctoral degrees – other     0 2019
-\end{verbatim}
-
-We can now plot the data.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# draw bar plot per type of degree}
-\NormalTok{enrollment_data }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ count,}
-             \DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(type, count))) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
-## x$y, : conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
-## x$y, : conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
-## x$y, : conversion failure on 'Doctoral degrees – other' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees –' in 'mbcsToSbcs': dot substituted for
-## <93>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <e2>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <80>
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on 'Doctoral degrees – professional' in 'mbcsToSbcs': dot
-## substituted for <93>
-\end{verbatim}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-159-1.pdf}
-
 \hypertarget{extracting-data-tables-from-websites}{%
 \section{Extracting data tables from websites}\label{extracting-data-tables-from-websites}}
 
@@ -6321,12 +5142,12 @@ Plot it.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-153-1.pdf}
 
 \hypertarget{project-proposal}{%
 \section{Project Proposal}\label{project-proposal}}
 
-\href{final_project_docs/esoc214_project_proposal.pdf}{Project Proposal} is due next week (Nov.~05, 2020).
+\href{final_project_docs/esoc214_project_proposal.pdf}{Project Proposal} is due April 06 2021.
 
 \hypertarget{data-case-study-3}{%
 \chapter{Data Case Study 3}\label{data-case-study-3}}
@@ -6495,7 +5316,7 @@ Finally, we draw a scatter plot of award count (\texttt{n}) by population size (
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-177-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-163-1.pdf}
 
 \hypertarget{plotting-a-map}{%
 \section{Plotting a map}\label{plotting-a-map}}
@@ -6512,7 +5333,7 @@ We can now plot a map, using the \texttt{plot\_usmpa} function.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 Let's make it look nicer by moving the legend right.
 
@@ -6525,7 +5346,7 @@ Let's make it look nicer by moving the legend right.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-179-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-165-1.pdf}
 
 We can also change the title of the legend.
 
@@ -6539,7 +5360,7 @@ We can also change the title of the legend.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 People usually associate darker colors with higher density or higher values. Let's change the colors to define a light color for our \texttt{low} values and a dark color for our \texttt{high} values. Check this documentation for \href{http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf}{color names in R}.
 
@@ -6555,7 +5376,7 @@ People usually associate darker colors with higher density or higher values. Let
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \hypertarget{data-challenge-08}{%
 \section{DATA CHALLENGE 08}\label{data-challenge-08}}
@@ -6688,7 +5509,7 @@ Use the function \texttt{kable()} to print out nice tables.
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-192}Total number of beer awards per region (1987-2020)}
+\caption{\label{tab:unnamed-chunk-178}Total number of beer awards per region (1987-2020)}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
@@ -6711,7 +5532,7 @@ Whenever you have results with decimals, you can specify the number of digitis t
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-194}Average number of beer awards per state across regions}
+\caption{\label{tab:unnamed-chunk-180}Average number of beer awards per state across regions}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
@@ -6759,7 +5580,7 @@ There are also a number of options that you can use for displaying plots nicely.
 
 \includegraphics[width=20.39in]{images/nice_plot}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-196-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 \hypertarget{knitting-pdfs}{%
 \section{Knitting PDFs}\label{knitting-pdfs}}
@@ -6827,7 +5648,7 @@ We need to apply the following steps:
 
 How many votes total for each candidate?
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-199-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-185-1.pdf}
 
 We can get electoral votes per state. The best table I found is from \href{https://en.wikipedia.org/wiki/United_States_Electoral_College\#:~:text=Electoral\%20votes\%2C\%20out\%20of\%20538,entitled\%20to\%20at\%20least\%203.}{wikipedia}
 
@@ -6874,11 +5695,11 @@ Now we can add electoral votes to winner by state data.
 
 Plot it!
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-189-1.pdf}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-204-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-190-1.pdf}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-191-1.pdf}
 
 \hypertarget{data-challenge-09}{%
 \section{DATA CHALLENGE 09}\label{data-challenge-09}}
@@ -6982,7 +5803,7 @@ The data we are using for this module was obtained from \href{https://www.kaggle
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-208-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-194-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7001,7 +5822,7 @@ The data we are using for this module was obtained from \href{https://www.kaggle
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7045,7 +5866,7 @@ The relationship between inflation and entrepreneurship is negative, with inflat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-211-1.pdf}
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-197-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
